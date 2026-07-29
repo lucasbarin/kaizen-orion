@@ -1,0 +1,2 @@
+Note that the cache directory should be the only file/ directory with 775 permissions. 
+The script, the scripts folder, and any other folders should have the default value for your server.

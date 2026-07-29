@@ -1,0 +1,24 @@
+# OS / editor
+.DS_Store
+Thumbs.db
+.vscode/
+
+# Dependency/vendor artifacts
+node_modules/
+vendor/
+
+# Logs and temporary files
+*.log
+*.tmp
+*.temp
+
+# Environment/local config
+.env
+.env.*
+
+# Project-local backups and dumps
+backups/
+*.zip
+*.rar
+*.bak
+*.sql.bak

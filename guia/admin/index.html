@@ -1,0 +1,1090 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Guia do Administrador - Sistema Orion Kaizen</title>
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+	<style>
+		:root {
+			--orion-blue: #009ee3;
+			--orion-yellow: #fcd700;
+			--admin-red: #dc3545;
+		}
+		
+		body {
+			font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+			background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+			min-height: 100vh;
+			padding: 2rem 0;
+		}
+		
+		.guide-container {
+			max-width: 1400px;
+			margin: 0 auto;
+			background: white;
+			border-radius: 1rem;
+			box-shadow: 0 10px 40px rgba(0,0,0,0.2);
+			overflow: hidden;
+		}
+		
+		.guide-header {
+			background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+			color: white;
+			padding: 3rem 2rem;
+			text-align: center;
+		}
+		
+		.guide-header h1 {
+			font-size: 2.5rem;
+			font-weight: 700;
+			margin-bottom: 0.5rem;
+		}
+		
+		.guide-header .badge {
+			background: var(--admin-red);
+			font-size: 0.9rem;
+			padding: 0.5rem 1rem;
+			margin-top: 0.5rem;
+		}
+		
+		.guide-header p {
+			font-size: 1.1rem;
+			opacity: 0.95;
+			margin-top: 1rem;
+		}
+		
+		.guide-nav {
+			background: #f8f9fa;
+			padding: 1rem 0;
+			border-bottom: 2px solid #dee2e6;
+			position: sticky;
+			top: 0;
+			z-index: 100;
+		}
+		
+		.guide-nav .nav-link {
+			color: #495057;
+			font-weight: 600;
+			padding: 0.75rem 1rem;
+			transition: all 0.3s;
+			font-size: 0.9rem;
+		}
+		
+		.guide-nav .nav-link:hover,
+		.guide-nav .nav-link.active {
+			color: var(--admin-red);
+			background: white;
+			border-radius: 0.5rem;
+		}
+		
+		.guide-content {
+			padding: 3rem 2rem;
+		}
+		
+		.section {
+			margin-bottom: 4rem;
+		}
+		
+		.section h2 {
+			color: #1a1a2e;
+			font-weight: 700;
+			margin-bottom: 1.5rem;
+			padding-bottom: 0.75rem;
+			border-bottom: 3px solid var(--admin-red);
+		}
+		
+		.section h3 {
+			color: #495057;
+			font-weight: 600;
+			margin-top: 2rem;
+			margin-bottom: 1rem;
+		}
+		
+		.step-card {
+			background: #f8f9fa;
+			border-left: 4px solid var(--admin-red);
+			padding: 1.5rem;
+			margin-bottom: 1.5rem;
+			border-radius: 0.5rem;
+			transition: transform 0.3s, box-shadow 0.3s;
+		}
+		
+		.step-card:hover {
+			transform: translateX(5px);
+			box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+		}
+		
+		.step-number {
+			display: inline-flex;
+			align-items: center;
+			justify-content: center;
+			width: 40px;
+			height: 40px;
+			background: var(--admin-red);
+			color: white;
+			border-radius: 50%;
+			font-weight: 700;
+			margin-right: 1rem;
+			flex-shrink: 0;
+		}
+		
+		.step-title {
+			font-size: 1.25rem;
+			font-weight: 600;
+			color: #212529;
+			margin-bottom: 0.5rem;
+		}
+		
+		.tip-box {
+			background: #d1ecf1;
+			border-left: 4px solid #17a2b8;
+			padding: 1rem;
+			margin: 1rem 0;
+			border-radius: 0.5rem;
+		}
+		
+		.tip-box i {
+			color: #17a2b8;
+			margin-right: 0.5rem;
+		}
+		
+		.warning-box {
+			background: #fff3cd;
+			border-left: 4px solid #ffc107;
+			padding: 1rem;
+			margin: 1rem 0;
+			border-radius: 0.5rem;
+		}
+		
+		.warning-box i {
+			color: #ffc107;
+			margin-right: 0.5rem;
+		}
+		
+		.danger-box {
+			background: #f8d7da;
+			border-left: 4px solid #dc3545;
+			padding: 1rem;
+			margin: 1rem 0;
+			border-radius: 0.5rem;
+		}
+		
+		.danger-box i {
+			color: #dc3545;
+			margin-right: 0.5rem;
+		}
+		
+		.feature-grid {
+			display: grid;
+			grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+			gap: 1.5rem;
+			margin: 2rem 0;
+		}
+		
+		.feature-card {
+			background: white;
+			border: 2px solid #dee2e6;
+			border-radius: 0.75rem;
+			padding: 1.5rem;
+			text-align: center;
+			transition: all 0.3s;
+			display: block;
+		}
+		
+		.feature-card:hover {
+			border-color: var(--admin-red);
+			transform: translateY(-5px);
+			box-shadow: 0 10px 20px rgba(220,53,69,0.2);
+			background: linear-gradient(135deg, #fff 0%, #fff5f5 100%);
+		}
+		
+		.feature-card i {
+			font-size: 3rem;
+			color: var(--admin-red);
+			margin-bottom: 1rem;
+			transition: transform 0.3s;
+		}
+		
+		.feature-card:hover i {
+			transform: scale(1.1);
+		}
+		
+		.feature-card h4 {
+			color: #212529;
+			font-weight: 600;
+			margin-bottom: 0.5rem;
+		}
+		
+		.code-block {
+			background: #1a1a2e;
+			color: #00ff00;
+			padding: 1rem;
+			border-radius: 0.5rem;
+			font-family: 'Courier New', monospace;
+			overflow-x: auto;
+			margin: 1rem 0;
+		}
+		
+		.table-custom {
+			margin: 1.5rem 0;
+		}
+		
+		.table-custom th {
+			background: #1a1a2e;
+			color: white;
+			font-weight: 600;
+		}
+		
+		.back-to-top {
+			position: fixed;
+			bottom: 2rem;
+			right: 2rem;
+			background: var(--admin-red);
+			color: white;
+			width: 50px;
+			height: 50px;
+			border-radius: 50%;
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			cursor: pointer;
+			box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+			transition: all 0.3s;
+			opacity: 0;
+			pointer-events: none;
+		}
+		
+		.back-to-top.visible {
+			opacity: 1;
+			pointer-events: all;
+		}
+		
+		.back-to-top:hover {
+			background: #c82333;
+			transform: translateY(-5px);
+		}
+	</style>
+</head>
+<body>
+	<div class="guide-container">
+		<!-- Header -->
+		<div class="guide-header">
+			<h1><i class="fas fa-shield-alt"></i> Guia do Administrador</h1>
+			<span class="badge">MASTER ADMIN</span>
+			<p>Sistema Orion Kaizen - Documentação Completa de Administração</p>
+		</div>
+		
+		<!-- Navigation -->
+		<nav class="guide-nav">
+			<div class="container-fluid">
+				<ul class="nav nav-pills justify-content-center flex-wrap">
+					<li class="nav-item"><a class="nav-link" href="#inicio">Início</a></li>
+					<li class="nav-item"><a class="nav-link" href="#login">Login</a></li>
+					<li class="nav-item"><a class="nav-link" href="#kaizens">Kaizens</a></li>
+					<li class="nav-item"><a class="nav-link" href="#colaboradores">Colaboradores</a></li>
+					<li class="nav-item"><a class="nav-link" href="#produtos">Produtos</a></li>
+					<li class="nav-item"><a class="nav-link" href="#configuracoes">Configurações</a></li>
+					<li class="nav-item"><a class="nav-link" href="#relatorios">Relatórios</a></li>
+				</ul>
+			</div>
+		</nav>
+		
+		<!-- Content -->
+		<div class="guide-content">
+			
+			<!-- Seção: Início -->
+			<section id="inicio" class="section">
+				<h2><i class="fas fa-home"></i> Visão Geral do Sistema</h2>
+				
+				<p class="lead">Como administrador master, você tem acesso completo ao sistema para gerenciar Kaizens, colaboradores, produtos e todas as configurações.</p>
+				
+				<div class="feature-grid">
+					<a href="#kaizens" class="feature-card" style="text-decoration: none; color: inherit; cursor: pointer;">
+						<i class="fas fa-clipboard-check"></i>
+						<h4>Analisar Kaizens</h4>
+						<p>Aprovar/rejeitar ideias e conceder pontos</p>
+					</a>
+					<a href="#colaboradores" class="feature-card" style="text-decoration: none; color: inherit; cursor: pointer;">
+						<i class="fas fa-users"></i>
+						<h4>Colaboradores</h4>
+						<p>Cadastrar usuários e gerenciar permissões</p>
+					</a>
+					<a href="#produtos" class="feature-card" style="text-decoration: none; color: inherit; cursor: pointer;">
+						<i class="fas fa-box-open"></i>
+						<h4>Catálogo</h4>
+						<p>Adicionar produtos e gerenciar estoque</p>
+					</a>
+					<a href="#configuracoes" class="feature-card" style="text-decoration: none; color: inherit; cursor: pointer;">
+						<i class="fas fa-cog"></i>
+						<h4>Configurações</h4>
+						<p>Tipos, setores e parâmetros do sistema</p>
+					</a>
+					<a href="#relatorios" class="feature-card" style="text-decoration: none; color: inherit; cursor: pointer;">
+						<i class="fas fa-chart-bar"></i>
+						<h4>Relatórios</h4>
+						<p>Exportar dados e acompanhar métricas</p>
+					</a>
+					<a href="#trocas" class="feature-card" style="text-decoration: none; color: inherit; cursor: pointer;">
+						<i class="fas fa-exchange-alt"></i>
+						<h4>Trocas</h4>
+						<p>Gerenciar resgates de produtos</p>
+					</a>
+				</div>
+				
+				<div class="danger-box mt-4">
+					<i class="fas fa-exclamation-circle"></i>
+					<strong>IMPORTANTE:</strong> Com grandes poderes vêm grandes responsabilidades. Suas ações afetam todo o sistema e não podem ser desfeitas facilmente.
+				</div>
+			</section>
+			
+			<!-- Seção: Login -->
+			<section id="login" class="section">
+				<h2><i class="fas fa-sign-in-alt"></i> Acesso Administrativo</h2>
+				
+			<div class="step-card">
+				<div class="d-flex align-items-start">
+					<span class="step-number">1</span>
+					<div>
+						<div class="step-title">Acesse a Área Admin</div>
+						<p>URL do admin: <code>http://seudominio.com/admin/</code></p>
+						<img src="../imgs/admin-dashboard.svg" alt="Dashboard Administrativo" class="screenshot">
+					</div>
+				</div>
+			</div>				<div class="step-card">
+					<div class="d-flex align-items-start">
+						<span class="step-number">2</span>
+						<div>
+							<div class="step-title">Credenciais de Administrador</div>
+							<p>Use uma conta de colaborador com permissão de <strong>Gestor</strong> ativa no banco de dados</p>
+							<div class="code-block mt-2">
+gestor_colaborador = 1
+							</div>
+						</div>
+					</div>
+				</div>
+				
+				<div class="warning-box">
+					<i class="fas fa-exclamation-triangle"></i>
+					<strong>Segurança:</strong> Nunca compartilhe suas credenciais de administrador. Considere usar senhas fortes e alterá-las periodicamente.
+				</div>
+			</section>
+			
+			<!-- Seção: Kaizens -->
+			<section id="kaizens" class="section">
+				<h2><i class="fas fa-clipboard-check"></i> Gerenciamento de Kaizens</h2>
+				
+				<h3><i class="fas fa-list"></i> Visualizar Kaizens</h3>
+				
+			<div class="step-card">
+				<div class="d-flex align-items-start">
+					<span class="step-number">1</span>
+					<div>
+						<div class="step-title">Acessar Lista</div>
+						<p>Menu: <strong>Kaizen → Listar Kaizens</strong></p>
+						<p>Você verá todos os Kaizens do sistema com filtros por:</p>
+						<ul class="mt-2">
+							<li>Status (Pendente, Aprovado, Rejeitado)</li>
+							<li>Setor</li>
+							<li>Colaborador</li>
+							<li>Período</li>
+						</ul>
+						<img src="../imgs/admin-kaizens.svg" alt="Lista de Kaizens" class="screenshot">
+					</div>
+				</div>
+			</div>				<h3><i class="fas fa-check-circle"></i> Analisar e Aprovar Kaizen</h3>
+				
+			<div class="step-card">
+				<div class="d-flex align-items-start">
+					<span class="step-number">1</span>
+					<div>
+						<div class="step-title">Abrir Kaizen</div>
+						<p>Clique no botão "Analisar" do Kaizen pendente</p>
+						<img src="../imgs/admin-analisar.svg" alt="Tela de Análise de Kaizen" class="screenshot">
+					</div>
+				</div>
+			</div>				<div class="step-card">
+					<div class="d-flex align-items-start">
+						<span class="step-number">2</span>
+						<div>
+							<div class="step-title">Revisar Informações</div>
+							<p>Analise cuidadosamente:</p>
+							<ul class="mt-2">
+								<li><strong>Tipo de Benefício:</strong> Categoria da melhoria</li>
+								<li><strong>Complemento:</strong> Valor anual em R$ (calculado automaticamente)</li>
+								<li><strong>Descrição:</strong> Situação atual, objetivo e resultado</li>
+								<li><strong>Anexos:</strong> Evidências fotográficas e documentos</li>
+								<li><strong>Colaboradores:</strong> Quem participou da ideia</li>
+							</ul>
+						</div>
+					</div>
+				</div>
+				
+				<div class="step-card">
+					<div class="d-flex align-items-start">
+						<span class="step-number">3</span>
+						<div>
+							<div class="step-title">Tomar Decisão</div>
+							<p><strong>Opção A - Aprovar:</strong></p>
+							<ol class="mt-2">
+								<li>Selecione "Aprovar" no campo Análise</li>
+								<li>Sistema calculará pontos automaticamente baseado em:
+									<ul>
+										<li>Tipo do Kaizen</li>
+										<li>Valor do complemento anual</li>
+										<li>Categoria/Redução associada</li>
+									</ul>
+								</li>
+								<li>Ajuste os pontos manualmente se necessário</li>
+								<li>Adicione comentário (opcional)</li>
+								<li>Clique em "Salvar Análise"</li>
+							</ol>
+							
+							<p class="mt-3"><strong>Opção B - Rejeitar:</strong></p>
+							<ol class="mt-2">
+								<li>Selecione "Rejeitar" no campo Análise</li>
+								<li>OBRIGATÓRIO: Escreva comentário explicando o motivo</li>
+								<li>Clique em "Salvar Análise"</li>
+							</ol>
+							
+							<p class="mt-3"><strong>Opção C - Devolver para Correção:</strong></p>
+							<ol class="mt-2">
+								<li>Selecione "Devolver" no campo Análise</li>
+								<li>Escreva o que precisa ser ajustado</li>
+								<li>Colaborador poderá editar e reenviar</li>
+							</ol>
+							
+							<div class="tip-box mt-3">
+								<i class="fas fa-info-circle"></i>
+								<strong>Sistema Automático:</strong> Ao aprovar, o sistema:
+								<ul class="mb-0 mt-2">
+									<li>Credita pontos automaticamente na conta do colaborador</li>
+									<li>Divide pontos entre colaborador principal e auxiliares (se houver)</li>
+									<li>Registra no log de auditoria</li>
+									<li>Envia email de notificação</li>
+								</ul>
+							</div>
+						</div>
+					</div>
+				</div>
+				
+				<h3><i class="fas fa-calculator"></i> Entendendo o Cálculo de Complementos</h3>
+				
+				<div class="step-card">
+					<div>
+						<div class="step-title">Sistema de Complementos v2.0</div>
+						<p>O valor em R$ é calculado automaticamente conforme o tipo:</p>
+						
+						<table class="table table-bordered table-custom">
+							<thead>
+								<tr>
+									<th>Tipo</th>
+									<th>Entrada do Usuário</th>
+									<th>Cálculo Aplicado</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr>
+									<td><strong>Reais Economizados</strong></td>
+									<td>Valor em R$</td>
+									<td>Sem cálculo (valor direto)</td>
+								</tr>
+								<tr>
+									<td><strong>Horas Poupadas</strong></td>
+									<td>Quantidade de horas/ano</td>
+									<td>Horas × Custo da Linha Parada</td>
+								</tr>
+								<tr>
+									<td><strong>Kg Carbono Reduzido</strong></td>
+									<td>Quantidade de kg</td>
+									<td>Kg × (Produtividade USD × Câmbio)</td>
+								</tr>
+							</tbody>
+						</table>
+						
+						<div class="warning-box">
+							<i class="fas fa-exclamation-triangle"></i>
+							<strong>Atenção:</strong> Os valores de cálculo (custo linha parada, câmbio, etc.) são configurados em <strong>Configurações → Geral</strong>
+						</div>
+					</div>
+				</div>
+				
+				<h3><i class="fas fa-search"></i> Buscar e Filtrar</h3>
+				
+				<div class="step-card">
+					<div>
+						<div class="step-title">Ferramentas de Busca</div>
+						<ul>
+							<li><strong>Busca Rápida:</strong> Digite nome do colaborador ou palavra-chave</li>
+							<li><strong>Filtro por Status:</strong> Pendentes, Aprovados, Rejeitados</li>
+							<li><strong>Filtro por Setor:</strong> Visualize Kaizens de setores específicos</li>
+							<li><strong>Filtro por Período:</strong> Selecione intervalo de datas</li>
+						</ul>
+					</div>
+				</div>
+			</section>
+			
+			<!-- Seção: Colaboradores -->
+			<section id="colaboradores" class="section">
+				<h2><i class="fas fa-users"></i> Gerenciamento de Colaboradores</h2>
+				
+				<h3><i class="fas fa-user-plus"></i> Cadastrar Colaborador</h3>
+				
+			<div class="step-card">
+				<div class="d-flex align-items-start">
+					<span class="step-number">1</span>
+					<div>
+						<div class="step-title">Acessar Cadastro</div>
+						<p>Menu: <strong>Colaboradores → Novo Colaborador</strong></p>
+						<img src="../imgs/admin-colaboradores.svg" alt="Gestão de Colaboradores" class="screenshot">
+					</div>
+				</div>
+			</div>				<div class="step-card">
+					<div class="d-flex align-items-start">
+						<span class="step-number">2</span>
+						<div>
+							<div class="step-title">Preencher Dados</div>
+							<p><strong>Campos obrigatórios:</strong></p>
+							<ul class="mt-2">
+								<li><strong>Nome Completo</strong></li>
+								<li><strong>Email:</strong> Será usado para notificações</li>
+								<li><strong>CPF:</strong> Serve como login (somente números)</li>
+								<li><strong>Senha:</strong> Senha inicial (colaborador pode alterar)</li>
+								<li><strong>Setor:</strong> Setor de trabalho</li>
+								<li><strong>Unidade:</strong> Filial/local</li>
+							</ul>
+							
+							<p class="mt-3"><strong>Permissões especiais:</strong></p>
+							<ul class="mt-2">
+								<li><strong>Líder de Setor:</strong> Pode analisar Kaizens do próprio setor</li>
+								<li><strong>Gestor:</strong> Acesso completo ao admin (cuidado!)</li>
+							</ul>
+						</div>
+					</div>
+				</div>
+				
+				<div class="step-card">
+					<div class="d-flex align-items-start">
+						<span class="step-number">3</span>
+						<div>
+							<div class="step-title">Salvar</div>
+							<p>Clique em "Cadastrar" - colaborador já pode fazer login</p>
+						</div>
+					</div>
+				</div>
+				
+				<h3><i class="fas fa-edit"></i> Editar Colaborador</h3>
+				
+				<div class="step-card">
+					<div>
+						<div class="step-title">Modificar Informações</div>
+						<p>Menu: <strong>Colaboradores → Listar</strong> → Clique em "Editar"</p>
+						<ul class="mt-2">
+							<li>Alterar dados cadastrais</li>
+							<li>Resetar senha</li>
+							<li>Ativar/desativar usuário</li>
+							<li>Ajustar saldo de pontos manualmente (quando necessário)</li>
+							<li>Promover a líder ou gestor</li>
+						</ul>
+						
+						<div class="danger-box mt-3">
+							<i class="fas fa-exclamation-circle"></i>
+							<strong>CUIDADO:</strong> Ao alterar saldo de pontos manualmente, sempre registre o motivo no campo de observações para auditoria.
+						</div>
+					</div>
+				</div>
+				
+				<h3><i class="fas fa-history"></i> Extrato de Pontos</h3>
+				
+				<div class="step-card">
+					<div>
+						<div class="step-title">Visualizar Histórico</div>
+						<p>Na lista de colaboradores, clique em "Extrato" para ver:</p>
+						<ul class="mt-2">
+							<li>Todos os ganhos de pontos (por Kaizen aprovado)</li>
+							<li>Todos os resgates de produtos</li>
+							<li>Ajustes manuais</li>
+							<li>Saldo atual e anterior</li>
+							<li>Data e descrição de cada transação</li>
+						</ul>
+					</div>
+				</div>
+			</section>
+			
+			<!-- Seção: Produtos -->
+			<section id="produtos" class="section">
+				<h2><i class="fas fa-box-open"></i> Gerenciamento de Produtos</h2>
+				
+				<h3><i class="fas fa-plus-circle"></i> Cadastrar Produto</h3>
+				
+			<div class="step-card">
+				<div class="d-flex align-items-start">
+					<span class="step-number">1</span>
+					<div>
+						<div class="step-title">Acessar Cadastro</div>
+						<p>Menu: <strong>Produtos → Novo Produto</strong></p>
+						<img src="../imgs/admin-produtos.svg" alt="Gestão de Produtos" class="screenshot">
+					</div>
+				</div>
+			</div>				<div class="step-card">
+					<div class="d-flex align-items-start">
+						<span class="step-number">2</span>
+						<div>
+							<div class="step-title">Preencher Informações</div>
+							<ul class="mt-2">
+								<li><strong>Nome do Produto:</strong> Título que aparecerá no catálogo</li>
+								<li><strong>Descrição:</strong> Detalhes do produto</li>
+								<li><strong>Categoria:</strong> Agrupe produtos similares</li>
+								<li><strong>Pontos:</strong> Custo em pontos para resgate</li>
+								<li><strong>Foto:</strong> Imagem do produto (recomendado 600x600px)</li>
+								<li><strong>Estoque:</strong> Quantidade disponível (opcional)</li>
+								<li><strong>Ativo:</strong> Marque para exibir no catálogo</li>
+							</ul>
+						</div>
+					</div>
+				</div>
+				
+				<div class="step-card">
+					<div class="d-flex align-items-start">
+						<span class="step-number">3</span>
+						<div>
+							<div class="step-title">Salvar</div>
+							<p>Produto estará imediatamente visível no catálogo dos colaboradores</p>
+						</div>
+					</div>
+				</div>
+				
+				<h3><i class="fas fa-exchange-alt"></i> Gerenciar Resgates</h3>
+				
+				<div class="step-card">
+					<div>
+						<div class="step-title">Acompanhar Trocas</div>
+						<p>Menu: <strong>Produtos → Resgates</strong></p>
+						<ul class="mt-2">
+							<li>Veja todos os resgates realizados</li>
+							<li>Filtre por colaborador, produto ou período</li>
+							<li>Marque resgates como "Entregue" após entregar o produto</li>
+							<li>Imprima relatório de resgates pendentes</li>
+						</ul>
+						
+						<div class="tip-box mt-3">
+							<i class="fas fa-info-circle"></i>
+							<strong>Importante:</strong> Resgates são permanentes. Os pontos são debitados imediatamente e não podem ser devolvidos pelo sistema (somente ajuste manual).
+						</div>
+					</div>
+				</div>
+				
+				<h3><i class="fas fa-tags"></i> Categorias de Produtos</h3>
+				
+				<div class="step-card">
+					<div>
+						<div class="step-title">Organizar Catálogo</div>
+						<p>Menu: <strong>Produtos → Categorias</strong></p>
+						<ul class="mt-2">
+							<li>Crie categorias (ex: Eletrônicos, Vale-Compras, Experiências)</li>
+							<li>Facilita navegação dos colaboradores</li>
+							<li>Organize produtos por valor/tipo</li>
+						</ul>
+					</div>
+				</div>
+			</section>
+			
+			<!-- Seção: Configurações -->
+			<section id="configuracoes" class="section">
+				<h2><i class="fas fa-cog"></i> Configurações do Sistema</h2>
+				
+				<h3><i class="fas fa-tags"></i> Tipos de Kaizen</h3>
+				
+			<div class="step-card">
+				<div>
+					<div class="step-title">Gerenciar Tipos</div>
+					<p>Menu: <strong>Configurações → Tipos de Kaizen</strong></p>
+					<p>Aqui você define as categorias de benefício:</p>
+					<ul class="mt-2">
+						<li>Qualidade</li>
+						<li>Segurança</li>
+						<li>Meio Ambiente</li>
+						<li>Ergonomia</li>
+						<li>Custos</li>
+						<li>Etc.</li>
+					</ul>
+					<img src="../imgs/admin-config.svg" alt="Configurações do Sistema" class="screenshot">
+					
+					<p class="mt-3"><strong>Cada tipo possui:</strong></p>
+					<ul class="mt-2">
+						<li><strong>Nome:</strong> Rótulo exibido</li>
+						<li><strong>Complemento:</strong> Tipo de cálculo (Reais, Horas ou Kg Carbono)</li>
+						<li><strong>Pontuação Base:</strong> Pontos concedidos para essa categoria</li>
+					</ul>
+				</div>
+			</div>				<h3><i class="fas fa-calculator"></i> Parâmetros de Cálculo</h3>
+				
+				<div class="step-card">
+					<div>
+						<div class="step-title">Configurar Valores</div>
+						<p>Menu: <strong>Configurações → Geral</strong></p>
+						<p>Configure os valores usados nos cálculos automáticos:</p>
+						
+						<table class="table table-bordered table-custom mt-3">
+							<thead>
+								<tr>
+									<th>Parâmetro</th>
+									<th>Uso</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr>
+									<td><strong>Custo Linha Parada</strong></td>
+									<td>Valor/hora usado para calcular "Horas Poupadas"</td>
+								</tr>
+								<tr>
+									<td><strong>Produtividade USD</strong></td>
+									<td>Valor por kg de carbono em dólar</td>
+								</tr>
+								<tr>
+									<td><strong>Câmbio Atual</strong></td>
+									<td>Cotação USD→BRL para conversão</td>
+								</tr>
+							</tbody>
+						</table>
+						
+						<div class="warning-box">
+							<i class="fas fa-exclamation-triangle"></i>
+							<strong>Atenção:</strong> Alterar estes valores afeta apenas NOVOS Kaizens. Kaizens já cadastrados mantêm os valores originais.
+						</div>
+					</div>
+				</div>
+				
+				<h3><i class="fas fa-building"></i> Setores e Unidades</h3>
+				
+				<div class="step-card">
+					<div>
+						<div class="step-title">Estrutura Organizacional</div>
+						<p><strong>Setores:</strong> Menu → <strong>Configurações → Setores</strong></p>
+						<ul class="mt-2">
+							<li>Cadastre os setores da empresa</li>
+							<li>Associe líderes aos setores</li>
+							<li>Use para filtrar Kaizens e relatórios</li>
+						</ul>
+						
+						<p class="mt-3"><strong>Unidades:</strong> Menu → <strong>Configurações → Unidades</strong></p>
+						<ul class="mt-2">
+							<li>Cadastre filiais/plantas</li>
+							<li>Colaboradores vinculados a unidades</li>
+							<li>Relatórios por localização</li>
+						</ul>
+					</div>
+				</div>
+				
+				<h3><i class="fas fa-envelope"></i> Configurações de Email</h3>
+				
+				<div class="step-card">
+					<div>
+						<div class="step-title">SMTP e Notificações</div>
+						<p>Arquivo: <code>app/configuracoes.php</code></p>
+						<p>Configure servidor SMTP para envio de emails automáticos:</p>
+						<ul class="mt-2">
+							<li>Host SMTP</li>
+							<li>Porta (geralmente 587 ou 465)</li>
+							<li>Usuário e senha</li>
+							<li>Email remetente</li>
+						</ul>
+						
+						<div class="code-block mt-3">
+$mail->Host = 'smtp.seudominio.com';
+$mail->Port = 587;
+$mail->Username = 'sistema@seudominio.com';
+$mail->Password = 'senha_smtp';
+						</div>
+						
+						<div class="tip-box">
+							<i class="fas fa-info-circle"></i>
+							<strong>Emails automáticos enviados:</strong>
+							<ul class="mb-0 mt-2">
+								<li>Novo Kaizen cadastrado (para líderes)</li>
+								<li>Kaizen analisado (para colaborador)</li>
+								<li>Recuperação de senha</li>
+							</ul>
+						</div>
+					</div>
+				</div>
+			</section>
+			
+			<!-- Seção: Relatórios -->
+			<section id="relatorios" class="section">
+				<h2><i class="fas fa-chart-bar"></i> Relatórios e Exportações</h2>
+				
+				<h3><i class="fas fa-file-excel"></i> Exportar Kaizens</h3>
+				
+				<div class="step-card">
+					<div>
+						<div class="step-title">Gerar Planilha</div>
+						<p>Menu: <strong>Kaizen → Exportar</strong></p>
+						<ul class="mt-2">
+							<li>Aplique filtros (período, setor, status)</li>
+							<li>Clique em "Exportar para Excel"</li>
+							<li>Planilha contém todos os dados dos Kaizens filtrados</li>
+							<li>Use para análises externas ou arquivamento</li>
+						</ul>
+					</div>
+				</div>
+				
+				<h3><i class="fas fa-chart-pie"></i> Dashboards e Métricas</h3>
+				
+				<div class="step-card">
+					<div>
+						<div class="step-title">Indicadores na Home</div>
+						<p>A página inicial do admin exibe:</p>
+						<ul class="mt-2">
+							<li><strong>Kaizens Pendentes:</strong> Aguardando análise</li>
+							<li><strong>Kaizens Aprovados (mês):</strong> Performance mensal</li>
+							<li><strong>Total de Pontos Concedidos:</strong> Engajamento geral</li>
+							<li><strong>Colaboradores Ativos:</strong> Base de usuários</li>
+							<li><strong>Resgates Pendentes:</strong> Produtos a entregar</li>
+						</ul>
+					</div>
+				</div>
+				
+				<h3><i class="fas fa-filter"></i> Filtros Avançados</h3>
+				
+				<div class="step-card">
+					<div>
+						<div class="step-title">Análises Customizadas</div>
+						<p>Menu: <strong>Kaizen → Filtrar</strong></p>
+						<p>Combine múltiplos filtros:</p>
+						<ul class="mt-2">
+							<li>Período específico</li>
+							<li>Setor ou colaborador</li>
+							<li>Tipo de benefício</li>
+							<li>Faixa de pontos concedidos</li>
+							<li>Status de análise</li>
+						</ul>
+						<p class="mt-2">Resultados podem ser exportados diretamente</p>
+					</div>
+				</div>
+			</section>
+			
+			<!-- Seção: Manutenção -->
+			<section class="section">
+				<h2><i class="fas fa-wrench"></i> Manutenção e Troubleshooting</h2>
+				
+				<h3><i class="fas fa-database"></i> Banco de Dados</h3>
+				
+				<div class="step-card">
+					<div>
+						<div class="step-title">Conexão</div>
+						<p>Arquivo: <code>app/conexao8.php</code></p>
+						<div class="code-block">
+$servidor = 'localhost';
+$usuario = 'root';
+$senha = '';
+$banco = 'orionv2_frontend';
+						</div>
+						<p class="mt-2">Altere conforme servidor de produção</p>
+					</div>
+				</div>
+				
+				<h3><i class="fas fa-exclamation-triangle"></i> Problemas Comuns</h3>
+				
+				<div class="step-card">
+					<div>
+						<div class="step-title">Emails Não Enviados</div>
+						<p><strong>Verificar:</strong></p>
+						<ul class="mt-2">
+							<li>Configurações SMTP em <code>app/configuracoes.php</code></li>
+							<li>Firewall bloqueando porta 587/465</li>
+							<li>Credenciais SMTP corretas</li>
+							<li>PHPMailer instalado (versão 6.7.1+)</li>
+						</ul>
+					</div>
+				</div>
+				
+				<div class="step-card">
+					<div>
+						<div class="step-title">Pontos Não Creditados</div>
+						<p><strong>Verificar:</strong></p>
+						<ul class="mt-2">
+							<li>Status do Kaizen = "Aprovado"</li>
+							<li>Campo pontos_kaizen preenchido</li>
+							<li>Tabela <code>log</code> registrou a transação</li>
+							<li>Saldo em <code>colaborador.ponto_colaborador</code></li>
+						</ul>
+					</div>
+				</div>
+				
+				<div class="step-card">
+					<div>
+						<div class="step-title">Upload de Arquivos Falha</div>
+						<p><strong>Verificar:</strong></p>
+						<ul class="mt-2">
+							<li>Permissões da pasta <code>imgs/kaizen/</code> (escrita)</li>
+							<li>Limite <code>upload_max_filesize</code> no php.ini (mín. 10MB)</li>
+							<li>Extensão permitida: jpg, png, pdf, doc, xls, zip</li>
+						</ul>
+					</div>
+				</div>
+				
+				<h3><i class="fas fa-life-ring"></i> Suporte Técnico</h3>
+				
+				<div class="step-card">
+					<div>
+						<div class="step-title">Arquivos Críticos</div>
+						<p><strong>Sempre faça backup antes de modificar:</strong></p>
+						<ul class="mt-2">
+							<li><code>app/conexao8.php</code> - Conexão banco</li>
+							<li><code>app/funcoes8.php</code> - Funções do sistema</li>
+							<li><code>app/configuracoes.php</code> - SMTP</li>
+							<li>Banco de dados completo (via phpMyAdmin)</li>
+						</ul>
+					</div>
+				</div>
+				
+				<div class="danger-box">
+					<i class="fas fa-exclamation-circle"></i>
+					<strong>BACKUP REGULAR:</strong> Faça backups semanais do banco de dados e mensais dos arquivos. Guarde em local seguro.
+				</div>
+			</section>
+			
+			<!-- Seção: Transferência -->
+			<section class="section">
+				<h2><i class="fas fa-user-shield"></i> Transferir Administração</h2>
+				
+				<p class="lead">Se precisar passar a administração para outra pessoa:</p>
+				
+				<div class="step-card">
+					<div class="d-flex align-items-start">
+						<span class="step-number">1</span>
+						<div>
+							<div class="step-title">Cadastrar Novo Administrador</div>
+							<p>Crie colaborador e marque como <strong>Gestor</strong></p>
+						</div>
+					</div>
+				</div>
+				
+				<div class="step-card">
+					<div class="d-flex align-items-start">
+						<span class="step-number">2</span>
+						<div>
+							<div class="step-title">Compartilhar Documentação</div>
+							<p>Forneça acesso a:</p>
+							<ul class="mt-2">
+								<li>Este guia (URL: <code>http://seudominio.com/guia/admin/</code>)</li>
+								<li>Credenciais de acesso</li>
+								<li>Documentação técnica em <code>/docs/</code></li>
+								<li>Informações de SMTP e servidor</li>
+							</ul>
+						</div>
+					</div>
+				</div>
+				
+				<div class="step-card">
+					<div class="d-flex align-items-start">
+						<span class="step-number">3</span>
+						<div>
+							<div class="step-title">Período de Transição</div>
+							<p>Recomendado:</p>
+							<ul class="mt-2">
+								<li>2 semanas de acesso duplo</li>
+								<li>Treinamento hands-on</li>
+								<li>Acompanhamento de análise de Kaizens</li>
+								<li>Teste de todas funcionalidades</li>
+							</ul>
+						</div>
+					</div>
+				</div>
+			</section>
+			
+			<!-- Ajuda -->
+			<section class="section">
+				<h2><i class="fas fa-question-circle"></i> Recursos Adicionais</h2>
+				
+				<div class="feature-grid">
+					<div class="feature-card">
+						<i class="fas fa-book"></i>
+						<h4>Documentação</h4>
+						<p>Pasta <code>/docs/</code> contém documentação técnica detalhada</p>
+					</div>
+					<div class="feature-card">
+						<i class="fas fa-code"></i>
+						<h4>Código-Fonte</h4>
+						<p>Sistema PHP 8 procedural com comentários inline</p>
+					</div>
+					<div class="feature-card">
+						<i class="fas fa-file-alt"></i>
+						<h4>Logs do Sistema</h4>
+						<p>Tabela <code>log</code> registra todas transações de pontos</p>
+					</div>
+				</div>
+				
+				<div class="alert alert-info mt-4">
+					<h5><i class="fas fa-info-circle"></i> Contato Técnico</h5>
+					<p class="mb-0">Para suporte técnico avançado ou customizações, consulte o desenvolvedor original ou equipe de TI interna.</p>
+				</div>
+			</section>
+			
+		</div>
+	</div>
+	
+	<!-- Back to Top Button -->
+	<div class="back-to-top" id="backToTop">
+		<i class="fas fa-arrow-up"></i>
+	</div>
+	
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+	<script>
+		// Smooth scroll para navegação
+		document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+			anchor.addEventListener('click', function (e) {
+				e.preventDefault();
+				const target = document.querySelector(this.getAttribute('href'));
+				if (target) {
+					target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+					
+					// Atualizar nav ativo
+					document.querySelectorAll('.guide-nav .nav-link').forEach(link => {
+						link.classList.remove('active');
+					});
+					this.classList.add('active');
+				}
+			});
+		});
+		
+		// Back to top button
+		const backToTop = document.getElementById('backToTop');
+		window.addEventListener('scroll', () => {
+			if (window.scrollY > 300) {
+				backToTop.classList.add('visible');
+			} else {
+				backToTop.classList.remove('visible');
+			}
+		});
+		
+		backToTop.addEventListener('click', () => {
+			window.scrollTo({ top: 0, behavior: 'smooth' });
+		});
+		
+		// Destacar seção ativa ao rolar
+		const sections = document.querySelectorAll('.section');
+		const navLinks = document.querySelectorAll('.guide-nav .nav-link');
+		
+		window.addEventListener('scroll', () => {
+			let current = '';
+			sections.forEach(section => {
+				const sectionTop = section.offsetTop;
+				const sectionHeight = section.clientHeight;
+				if (window.scrollY >= (sectionTop - 200)) {
+					current = section.getAttribute('id');
+				}
+			});
+			
+			navLinks.forEach(link => {
+				link.classList.remove('active');
+				if (link.getAttribute('href') === `#${current}`) {
+					link.classList.add('active');
+				}
+			});
+		});
+	</script>
+</body>
+</html>

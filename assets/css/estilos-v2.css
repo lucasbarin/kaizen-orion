@@ -1,0 +1,423 @@
+/**
+ * Sistema Orion Kaizen v2.0
+ * Estilos Centralizados - Bootstrap 5.3.2
+ * Criado: Novembro 2025
+ */
+
+/* ========================================
+   VARIÁVEIS GLOBAIS
+   ======================================== */
+:root {
+	--orion-primary: #009ee3;
+	--orion-primary-dark: #0075ad;
+	--orion-success: #00812e;
+	--orion-warning: #ff9800;
+	--orion-danger: #dc3545;
+	--orion-light-bg: rgba(0, 158, 227, 0.02);
+}
+
+/* ========================================
+   COMPONENTES - HEADERS
+   ======================================== */
+
+/* Header de Análise (Verde) */
+.analise-header {
+	background: linear-gradient(135deg, var(--orion-success) 0%, #027a2e 100%);
+	color: white;
+	padding: 2rem;
+	border-radius: 1rem;
+	margin-bottom: 2rem;
+	box-shadow: 0 4px 20px rgba(0, 129, 46, 0.2);
+}
+
+.analise-header h1 {
+	font-size: 2rem;
+	font-weight: 700;
+	margin: 0 0 0.5rem;
+	color: white !important;
+}
+
+.analise-header h1 i {
+	color: white !important;
+}
+
+.analise-header .alert {
+	border: 2px solid rgba(255, 255, 255, 0.3);
+	font-weight: 600;
+	box-shadow: 0 2px 10px rgba(0, 0, 0, 0.15);
+}
+
+.analise-header .alert-warning {
+	background-color: rgba(255, 193, 7, 0.95);
+	color: #664d03;
+	border-color: rgba(255, 255, 255, 0.5);
+}
+
+.analise-header .alert-success {
+	background-color: rgba(25, 135, 84, 0.95);
+	color: white;
+	border-color: rgba(255, 255, 255, 0.5);
+}
+
+.analise-header .alert-danger {
+	background-color: rgba(220, 53, 69, 0.95);
+	color: white;
+	border-color: rgba(255, 255, 255, 0.5);
+}
+
+.analise-header .alert-info {
+	background-color: rgba(13, 202, 240, 0.95);
+	color: #055160;
+	border-color: rgba(255, 255, 255, 0.5);
+}
+
+.analise-header .badge {
+	font-size: 0.9rem;
+	padding: 0.5rem 1rem;
+}
+
+/* Header de Edição (Laranja) */
+.edit-header {
+	background: linear-gradient(135deg, #ff9800 0%, #f57c00 100%);
+	color: white;
+	padding: 2rem;
+	border-radius: 1rem;
+	margin-bottom: 2rem;
+	box-shadow: 0 4px 20px rgba(255, 152, 0, 0.2);
+}
+
+.edit-header h1 {
+	font-size: 2rem;
+	font-weight: 700;
+	margin: 0;
+	color: white;
+}
+
+/* ========================================
+   COMPONENTES - FORMULÁRIOS
+   ======================================== */
+
+/* Wizard de Formulário */
+.form-wizard {
+	background: white;
+	border-radius: 1rem;
+	box-shadow: 0 10px 40px rgba(0, 0, 0, 0.08);
+	overflow: hidden;
+}
+
+.wizard-header {
+	background: linear-gradient(135deg, var(--orion-primary) 0%, var(--orion-primary-dark) 100%);
+	color: white;
+	padding: 2rem;
+	text-align: center;
+	position: relative;
+}
+
+.wizard-header::after {
+	content: '';
+	position: absolute;
+	bottom: -15px;
+	left: 50%;
+	transform: translateX(-50%);
+	width: 40px;
+	height: 40px;
+	background: white;
+	border-radius: 50%;
+	box-shadow: 0 4px 15px rgba(0, 158, 227, 0.3);
+	z-index: 1;
+}
+
+.wizard-header i {
+	font-size: 3rem;
+	margin-bottom: 1rem;
+	opacity: 0.9;
+}
+
+.wizard-body {
+	padding: 3rem 2rem 2rem;
+}
+
+.form-step {
+	display: none;
+}
+
+.form-step.active {
+	display: block;
+	animation: fadeInUp 0.5s ease;
+}
+
+/* Indicadores de Etapa */
+.step-indicator {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	margin-bottom: 2rem;
+	gap: 1rem;
+}
+
+.step-dot {
+	width: 12px;
+	height: 12px;
+	border-radius: 50%;
+	background: #e9ecef;
+	transition: all 0.3s ease;
+}
+
+.step-dot.active {
+	width: 40px;
+	border-radius: 10px;
+	background: linear-gradient(135deg, var(--orion-primary), var(--orion-primary-dark));
+}
+
+/* Seções de Formulário */
+.form-section {
+	background: white;
+	border-radius: 0.75rem;
+	padding: 2rem;
+	margin-bottom: 2rem;
+	box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
+}
+
+.form-section h5 {
+	color: var(--orion-primary);
+	font-weight: 600;
+	margin-bottom: 1.5rem;
+	display: flex;
+	align-items: center;
+	gap: 0.5rem;
+}
+
+.form-section h5 i {
+	color: var(--orion-primary);
+}
+
+/* ========================================
+   COMPONENTES - UPLOAD DE ARQUIVOS
+   ======================================== */
+
+.file-upload-area {
+	border: 2px dashed var(--orion-primary);
+	border-radius: 0.75rem;
+	padding: 2rem;
+	text-align: center;
+	background: var(--orion-light-bg);
+	transition: all 0.3s ease;
+	cursor: pointer;
+}
+
+.file-upload-area:hover {
+	background: rgba(0, 158, 227, 0.05);
+	border-color: var(--orion-primary-dark);
+}
+
+.file-upload-area.drag-over {
+	background: rgba(0, 158, 227, 0.1);
+	border-color: var(--orion-primary);
+	border-width: 3px;
+	transform: scale(1.02);
+}
+
+.file-upload-area i {
+	font-size: 3rem;
+	color: var(--orion-primary);
+	margin-bottom: 1rem;
+}
+
+/* ========================================
+   COMPONENTES - ANEXOS
+   ======================================== */
+
+.anexos-atuais {
+	display: grid;
+	grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+	gap: 1rem;
+	margin-bottom: 2rem;
+}
+
+.anexo-atual {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	background: #f8f9fa;
+	border: 1px solid #dee2e6;
+	border-radius: 0.5rem;
+	padding: 1rem;
+	transition: all 0.3s ease;
+}
+
+.anexo-atual:hover {
+	border-color: var(--orion-primary);
+	box-shadow: 0 2px 8px rgba(0, 158, 227, 0.15);
+}
+
+.anexo-atual.deletado {
+	opacity: 0.5;
+	background: #ffe5e5;
+	border-color: #dc3545;
+}
+
+.anexo-atual-info {
+	flex: 1;
+	min-width: 0;
+}
+
+.anexo-atual-icon {
+	font-size: 2rem;
+	color: var(--orion-primary);
+	margin-right: 1rem;
+}
+
+.anexo-atual-nome {
+	font-weight: 600;
+	color: #212529;
+	margin-bottom: 0.25rem;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+}
+
+.anexo-atual-meta {
+	font-size: 0.875rem;
+	color: #6c757d;
+}
+
+/* ========================================
+   COMPONENTES - CARDS E INFO
+   ======================================== */
+
+.info-card {
+	background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+	border: 1px solid #dee2e6;
+	border-radius: 0.75rem;
+	padding: 1.5rem;
+	margin-bottom: 2rem;
+}
+
+.info-row {
+	display: flex;
+	padding: 0.75rem 0;
+	border-bottom: 1px solid #e9ecef;
+}
+
+.info-row:last-child {
+	border-bottom: none;
+}
+
+.info-label {
+	font-weight: 600;
+	color: #495057;
+	min-width: 200px;
+}
+
+.info-value {
+	color: #212529;
+	flex: 1;
+}
+
+/* ========================================
+   COMPONENTES - ALERTAS CUSTOMIZADOS
+   ======================================== */
+
+.alert-custom {
+	background: linear-gradient(135deg, #fff3cd 0%, #ffe69c 100%);
+	border: 1px solid #ffc107;
+	border-radius: 0.75rem;
+	padding: 1.5rem;
+	margin-top: 1rem;
+	display: none;
+}
+
+.alert-custom img {
+	width: 31px;
+	height: 20px;
+	margin-right: 10px;
+}
+
+/* ========================================
+   ANIMAÇÕES
+   ======================================== */
+
+@keyframes fadeInUp {
+	from {
+		opacity: 0;
+		transform: translateY(20px);
+	}
+	to {
+		opacity: 1;
+		transform: translateY(0);
+	}
+}
+
+@keyframes slideDown {
+	from {
+		opacity: 0;
+		max-height: 0;
+	}
+	to {
+		opacity: 1;
+		max-height: 500px;
+	}
+}
+
+/* ========================================
+   RESPONSIVIDADE
+   ======================================== */
+
+@media (max-width: 768px) {
+	.analise-header h1,
+	.edit-header h1,
+	.wizard-header h1 {
+		font-size: 1.5rem;
+	}
+	
+	.form-section {
+		padding: 1.5rem;
+	}
+	
+	.anexos-atuais {
+		grid-template-columns: 1fr;
+	}
+	
+	.info-row {
+		flex-direction: column;
+		gap: 0.5rem;
+	}
+	
+	.info-label {
+		min-width: auto;
+	}
+	
+	.wizard-body {
+		padding: 2rem 1rem 1rem;
+	}
+}
+
+/* ========================================
+   UTILITÁRIOS
+   ======================================== */
+
+.btn-nav-wizard {
+	min-width: 120px;
+}
+
+.current-image {
+	max-width: 300px;
+	max-height: 200px;
+	border-radius: 0.5rem;
+	margin: 1rem 0;
+	box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.text-muted {
+	color: #6c757d !important;
+}
+
+/* Badge de Pontos */
+.badge-pontos {
+	background: linear-gradient(135deg, #ffc107 0%, #ff9800 100%);
+	color: white;
+	padding: 0.5rem 1rem;
+	border-radius: 2rem;
+	font-weight: 600;
+	display: inline-block;
+}

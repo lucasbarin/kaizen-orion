@@ -1,0 +1,575 @@
+@import url("reset.css");
+@import url("fonte.css");
+/* A Linux- and Windows-friendly sans-serif font stack: http://prospects.mhurrell.co.uk/post/updating-the-helvetica-font-stack */
+body {
+    background:  no-repeat left top;
+    background-color: #ffffff;
+    font-family: 'Arial';
+    font-size: 22px;
+}
+/* Using local fonts? Check out Font Squirrel's webfont generator: http://www.fontsquirrel.com/tools/webfont-generator */
+
+/* We like off-black for text. */
+body, select, input, textarea {
+    color: #565656;
+}
+a {
+    color: #565656;
+    cursor: pointer;
+}
+a:hover {
+    color: #009ee3; 
+}
+
+/* Custom text-selection colors (remove any text shadows: http://twitter.com/miketaylr/status/12228805301) */
+::-moz-selection {
+background: #fcd700;
+color: #fff;
+text-shadow: none;
+}
+::selection {
+    background: #fcd700;
+    color: #fff;
+    text-shadow: none;
+}
+/*	j.mp/webkit-tap-highlight-color */
+a:link {
+    -webkit-tap-highlight-color: #fcd700;
+}
+ins {
+    background-color: #fcd700;
+    color: #000;
+    text-decoration: none;
+}
+mark {
+    background-color: #fcd700;
+    color: #000;
+    font-style: italic;
+    font-weight: bold;
+}
+
+
+#alert-custo{
+	background-color: #009ee3;
+	color: #ffffff;
+	padding: 10px;
+	display: none;
+	width: 100%;
+	float: left;
+	margin-bottom: 30px;
+}
+
+/* Mozilla dosen't style place holders by default */
+/* Mozilla dosen't style place holders by default */
+::-webkit-input-placeholder { /* Chrome/Opera/Safari */
+ color: #a9a9a9;
+}
+::-moz-placeholder { /* Firefox 19+ */
+ color: #a9a9a9;
+}
+:-ms-input-placeholder { /* IE 10+ */
+ color: #a9a9a9;
+}
+:-moz-placeholder { /* Firefox 18- */
+ color: #a9a9a9;
+}
+.conteudo {
+    width: 94%;
+    padding: 0px 3%;
+    max-width: 1200px;
+    margin: 0px auto;
+}
+.onlyDesk {
+    display: block;
+}
+.onlyMob {
+    display: none;
+}
+.div1-1 {
+    width: 98%;
+    padding-left: 1%;
+    padding-right: 1%;
+    float: left;
+}
+.div1-2 {
+    width: 48%;
+    padding-left: 1%;
+    padding-right: 1%;
+    float: left;
+}
+.div1-3 {
+    width: 31.33%;
+    padding-left: 1%;
+    padding-right: 1%;
+    float: left;
+}
+.div2-3 {
+    width: 64.66%;
+    padding-left: 1%;
+    padding-right: 1%;
+    float: left;
+}
+.div1-4 {
+    width: 23%;
+    padding-left: 1%;
+    padding-right: 1%;
+    float: left;
+}
+.div3-4 {
+    width: 73%;
+    padding-left: 1%;
+    padding-right: 1%;
+    float: left;
+}
+.cor-azul {
+    color: #009de0;
+}
+.cor-verde {
+    color: #009ee3;
+}
+.cor-vermelho {
+    color: #8D0002;
+}
+.fonte-p {
+    font-size: 13px;
+}
+.fonte-pp {
+    font-size: 11px;
+}
+.fonte-g, h1 {
+    font-size: 34px;
+    font-weight: normal;
+}
+.fonte-m, h2 {
+    font-size: 26px;
+    font-weight: normal;
+}
+
+h1{
+ color: #009ee3;
+}
+
+.img-resp, .img-resp img{
+	width: 100%;
+	height: auto;
+}
+#spacerTop {
+    width: 100%;
+    float: left;
+    height: 150px;
+}
+#logoKaizen {
+    width: 100%;
+    height: auto;
+    max-width: 300px;
+}
+/*
+FORMULARIO
+*/
+.formulario input, .formulario select, .formulario textarea, .formulario file {
+    padding: 0px 4%;
+    width: 91%;
+    font-family: 'Arial';
+    font-size: 18px;
+    color: #575656;
+    background-color: #ffffff;
+    height: 32px;
+    float: left;
+    border: 1px solid #dadada;
+}
+#formOrdem select{
+	width: 41%;
+	max-width: 200px;
+	font-size: 0.7em;
+}
+.formulario input, .formulario select, .formulario textarea {
+    margin-bottom: 20px;
+}
+.formulario select {
+    width: 100%;
+    height: 34px;
+}
+.formulario textarea {
+    height: 200px;
+    padding-top: 7px;
+    padding-bottom: 7px;
+}
+.formulario input:hover, .formulario select:hover, .formulario textarea:hover, .formulario input:focus, .formulario select:focus, .formulario textarea:focus {
+    color: #575656;
+}
+.formulario input.inputPP {
+    padding: 0px 4%;
+    width: 11%;
+}
+.formulario select.inputPP {
+    width: 19%;
+}
+.formulario input.inputGG {
+    padding: 0px 4%;
+    width: 71%;
+}
+.formulario input.inputM {
+    padding: 0px 4%;
+    width: 50%;
+}
+.formulario input.inputMM {
+    padding: 0px 4%;
+    width: 40%;
+}
+.formulario label {
+    padding: 0px 4% 5px;
+    width: 91%;
+    float: left;
+}
+.formulario input[type=submit], .bt-pill {
+    width: 150px;
+    margin: 0px;
+    padding: 0px;
+    border-left: 0px;
+    background: #009ee3;
+    color: #ffffff;
+    height: 54px;
+    line-height: 54px;
+    border: 0px;
+    border-radius: 35px;
+    display: inline-block;
+	text-align: center;
+}
+.formulario input[type=submit]:hover, .bt-pill:hover {
+    background-color: #565656;
+    color: #ffffff;
+}
+.formulario input.inputMargin {
+    margin-right: 2%;
+}
+.bt-pill-p, .formulario input[type=submit].bt-pill-p {
+    width: 80px;
+    margin: 0px;
+    padding: 0px;
+    border-left: 0px;
+    background: #009ee3;
+    color: #ffffff;
+    height: 28px;
+    line-height: 28px;
+    border: 0px;
+    border-radius: 30px;
+    display: inline-block;
+    font-size: 15px;
+    text-align: center;
+    margin-top: -10px;
+    position: relative;
+    margin-bottom: 15px;
+}
+
+#formOrdem.formulario input[type=submit] .bt-pill-p {
+	margin-top: 5px !important;
+	margin-left: 10px !important;
+}
+
+.bt-pill.bt-vermelho{
+	background-color: rgba(192,0,3,1.00);
+}
+
+.bt-pill.bt-vermelho:hover{
+    background-color: rgba(255,14,18,1.00);
+}
+
+.bt-pill.bt-verde{
+    background-color: rgba(0,129,46,1.00);
+}
+
+.bt-pill.bt-verde:hover{
+    background-color: rgba(2,151,33,1.00);
+}
+
+.bt-pill.bt-amarelo{
+	background-color: rgba(164,152,25,1.00);
+}
+
+.bt-pill.bt-amarelo:hover{
+	background-color: rgba(204,186,0,1.00);
+}
+/*
+FIM FORMULARIO
+*/
+
+footer {
+    border: 3px solid #009ee3;
+    border-left: 0px;
+    border-right: 0px;
+    border-bottom: 0px;
+    display: block;
+    width: 100%;
+    padding-top: 10px;
+}
+.float-esq {
+    float: left;
+}
+.float-dir {
+    float: right;
+}
+.bts-prin {
+    border: 2px solid #dadada;
+    border-left: 0px;
+    border-right: 0px;
+    border-top: 0px;
+    display: block;
+    width: 100%;
+    padding-bottom: 10px;
+    font-size: 25px;
+    max-width: 300px;
+    margin-top: 20px;
+}
+.bts-prin span{
+	 font-size: 20px;
+}
+
+.alert {
+    display: block;
+    padding: 5px 10px;
+    font-size: 0.8em;
+    border: 1px solid;
+    margin-bottom: 10px;
+}
+.alert-warning {
+    background-color: rgba(174,140,0,1.00);
+    border-color: rgba(119,89,0,1.00);
+    color: #ffffff;
+}
+.alert-success {
+    background-color: rgba(58,140,0,1.00);
+    border-color: rgba(41,77,0,1.00);
+    color: #ffffff;
+}
+.alert-danger {
+    background-color: rgba(168,1,4,1.00);
+    border-color: rgba(103,0,1,1.00);
+    color: #ffffff;
+}
+.alert-info {
+    background-color: #A3941A;
+    border-color: #705D01;
+    color: #ffffff;
+}
+
+#lista-produto{
+	display: block;
+	width: 100%;
+	padding: 25px 0px;
+}
+#lista-produto li{
+	width: 23%;
+	margin: 1%;
+	float: left;
+	background: #ffffff;
+	text-align: center;
+}
+#lista-produto li .miniImg{
+	width: 90%;
+	height: 0px;
+	margin: 5%;
+	padding-bottom: 90%;
+	background: no-repeat center;
+	background-size: contain;
+	display: block;
+}
+#lista-produto li .nomeProduto{
+	width: 90%;
+	margin: 0px 5%;
+	text-align: center;
+	height: 35px;
+	overflow: hidden;
+	display: block;
+}
+
+#lista-produto li .descProduto{
+	width: 90%;
+	margin: 0px 5%;
+	text-align: center;
+	height: 65px;
+	overflow: hidden;
+	display: block;
+}
+
+#lista-produto li .pontoProduto{
+	width: 90%;
+	margin: 0px 5%;
+	text-align: center; 
+	height: 20px;
+	overflow: hidden;
+	display: block;
+}
+#lista-produto li .bt-pill-p{
+	margin-left: auto;
+	margin-right: auto;
+	
+}
+
+@media screen and (max-width: 1000px) {
+
+}
+
+/* Media queries
+-------------------------------------------------------------------------------*/
+@media screen and (max-width: 780px) {
+.onlyDesk {
+    display: none;
+}
+.onlyMob {
+    display: block;
+}
+.clearfix780:before, .clearfix780:after {
+    content: "\0020";
+    display: block;
+    height: 0;
+    overflow: hidden;
+}
+.clearfix780:after, .clearfix780 {
+    clear: both;
+}
+.clearfix780 {
+    zoom: 1;
+}
+.div1-3, .div2-3, .div3-4 {
+    width: 48%;
+    padding-left: 1%;
+    padding-right: 1%;
+    margin-bottom: 25px;
+}
+.div1-1-med {
+    width: 98%;
+    padding-left: 1%;
+    padding-right: 1%;
+    float: left;
+}
+.div1-2-med {
+    width: 48%;
+    padding-left: 1%;
+    padding-right: 1%;
+    float: left;
+}
+.div1-3-med {
+    width: 31.33%;
+    padding-left: 1%;
+    padding-right: 1%;
+    float: left;
+}
+.div2-3-med {
+    width: 64.66%;
+    padding-left: 1%;
+    padding-right: 1%;
+    float: left;
+}
+.div1-4-med {
+    width: 23%;
+    padding-left: 1%;
+    padding-right: 1%;
+    float: left;
+}
+.div3-4-med {
+    width: 73%;
+    padding-left: 1%;
+    padding-right: 1%;
+    float: left;
+}
+.alig-esq-med {
+    text-align: left;
+}
+.alig-cen-med {
+    text-align: center;
+}
+.alig-dir-med {
+    text-align: right;
+}
+.float-esq-med {
+    float: left;
+}
+.float-dir-med {
+    float: right;
+}
+}
+
+@media screen and (max-width: 480px) {
+.conteudo {
+    width: 90%;
+    padding: 0px 5%;
+}
+.clearfix480:before, .clearfix480:after {
+    content: "\0020";
+    display: block;
+    height: 0;
+    overflow: hidden;
+}
+.clearfix480:after, .clearfix480 {
+    clear: both;
+}
+.clearfix480 {
+    zoom: 1;
+}
+.div1-2, .div1-3, .div2-3, .div1-4, .div1-1, .div3-4, .div1-2-med, .div1-3-med, .div2-3-med, .div1-4-med, .div1-1-med, .div3-4-med {
+    width: 100%;
+    padding-left: 0%;
+    padding-right: 0%;
+    float: left;
+}
+.div1-1-peq {
+    width: 100%;
+    padding-left: 0%;
+    padding-right: 0%;
+    float: left;
+}
+.div1-2-peq {
+    width: 48%;
+    padding-left: 1%;
+    padding-right: 1%;
+    float: left;
+}
+.div1-3-peq {
+    width: 31.33%;
+    padding-left: 1%;
+    padding-right: 1%;
+    float: left;
+}
+.div2-3-peq {
+    width: 64.66%;
+    padding-left: 1%;
+    padding-right: 1%;
+    float: left;
+}
+.div1-4-peq {
+    width: 23%;
+    padding-left: 1%;
+    padding-right: 1%;
+    float: left;
+}
+.div3-4-peq {
+    width: 73%;
+    padding-left: 1%;
+    padding-right: 1%;
+    float: left;
+}
+.alig-esq-peq {
+    text-align: left;
+}
+.alig-cen-peq {
+    text-align: center;
+}
+.alig-dir-peq {
+    text-align: right;
+}
+.float-esq-peq {
+    float: left;
+}
+.float-dir-peq {
+    float: right;
+}
+#formOrdem select{
+	width: 46%;
+	font-size: 0.6em;
+}
+}
+
+/* Print styles
+-------------------------------------------------------------------------------*/
+@media print {
+}

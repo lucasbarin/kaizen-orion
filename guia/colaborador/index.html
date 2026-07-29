@@ -1,0 +1,654 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Guia do Colaborador - Sistema Orion Kaizen</title>
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+	<style>
+		:root {
+			--orion-blue: #009ee3;
+			--orion-yellow: #fcd700;
+		}
+		
+		body {
+			font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+			background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+			min-height: 100vh;
+			padding: 2rem 0;
+		}
+		
+		.guide-container {
+			max-width: 1200px;
+			margin: 0 auto;
+			background: white;
+			border-radius: 1rem;
+			box-shadow: 0 10px 40px rgba(0,0,0,0.1);
+			overflow: hidden;
+		}
+		
+		.guide-header {
+			background: linear-gradient(135deg, var(--orion-blue) 0%, #0075ad 100%);
+			color: white;
+			padding: 3rem 2rem;
+			text-align: center;
+		}
+		
+		.guide-header h1 {
+			font-size: 2.5rem;
+			font-weight: 700;
+			margin-bottom: 0.5rem;
+		}
+		
+		.guide-header p {
+			font-size: 1.1rem;
+			opacity: 0.95;
+			margin: 0;
+		}
+		
+		.guide-nav {
+			background: #f8f9fa;
+			padding: 1rem 0;
+			border-bottom: 2px solid #dee2e6;
+			position: sticky;
+			top: 0;
+			z-index: 100;
+		}
+		
+		.guide-nav .nav-link {
+			color: #495057;
+			font-weight: 600;
+			padding: 0.75rem 1.5rem;
+			transition: all 0.3s;
+		}
+		
+		.guide-nav .nav-link:hover,
+		.guide-nav .nav-link.active {
+			color: var(--orion-blue);
+			background: white;
+			border-radius: 0.5rem;
+		}
+		
+		.guide-content {
+			padding: 3rem 2rem;
+		}
+		
+		.section {
+			margin-bottom: 4rem;
+		}
+		
+		.section h2 {
+			color: var(--orion-blue);
+			font-weight: 700;
+			margin-bottom: 1.5rem;
+			padding-bottom: 0.75rem;
+			border-bottom: 3px solid var(--orion-yellow);
+		}
+		
+		.step-card {
+			background: #f8f9fa;
+			border-left: 4px solid var(--orion-blue);
+			padding: 1.5rem;
+			margin-bottom: 1.5rem;
+			border-radius: 0.5rem;
+			transition: transform 0.3s, box-shadow 0.3s;
+		}
+		
+		.step-card:hover {
+			transform: translateX(5px);
+			box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+		}
+		
+		.step-number {
+			display: inline-flex;
+			align-items: center;
+			justify-content: center;
+			width: 40px;
+			height: 40px;
+			background: var(--orion-blue);
+			color: white;
+			border-radius: 50%;
+			font-weight: 700;
+			margin-right: 1rem;
+			flex-shrink: 0;
+		}
+		
+		.step-title {
+			font-size: 1.25rem;
+			font-weight: 600;
+			color: #212529;
+			margin-bottom: 0.5rem;
+		}
+		
+		.screenshot {
+			border: 2px solid #dee2e6;
+			border-radius: 0.5rem;
+			margin: 1rem 0;
+			max-width: 100%;
+			height: auto;
+			box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+		}
+		
+		.tip-box {
+			background: #d1ecf1;
+			border-left: 4px solid #17a2b8;
+			padding: 1rem;
+			margin: 1rem 0;
+			border-radius: 0.5rem;
+		}
+		
+		.tip-box i {
+			color: #17a2b8;
+			margin-right: 0.5rem;
+		}
+		
+		.warning-box {
+			background: #fff3cd;
+			border-left: 4px solid #ffc107;
+			padding: 1rem;
+			margin: 1rem 0;
+			border-radius: 0.5rem;
+		}
+		
+		.warning-box i {
+			color: #ffc107;
+			margin-right: 0.5rem;
+		}
+		
+		.feature-grid {
+			display: grid;
+			grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+			gap: 1.5rem;
+			margin: 2rem 0;
+		}
+		
+		.feature-card {
+			background: white;
+			border: 2px solid #dee2e6;
+			border-radius: 0.75rem;
+			padding: 1.5rem;
+			text-align: center;
+			transition: all 0.3s;
+			display: block;
+		}
+		
+		.feature-card:hover {
+			border-color: var(--orion-blue);
+			transform: translateY(-5px);
+			box-shadow: 0 10px 20px rgba(0,158,227,0.2);
+			background: linear-gradient(135deg, #fff 0%, #f0f9ff 100%);
+		}
+		
+		.feature-card i {
+			font-size: 3rem;
+			color: var(--orion-blue);
+			margin-bottom: 1rem;
+			transition: transform 0.3s;
+		}
+		
+		.feature-card:hover i {
+			transform: scale(1.1);
+		}
+		
+		.feature-card h4 {
+			color: #212529;
+			font-weight: 600;
+			margin-bottom: 0.5rem;
+		}
+		
+		.back-to-top {
+			position: fixed;
+			bottom: 2rem;
+			right: 2rem;
+			background: var(--orion-blue);
+			color: white;
+			width: 50px;
+			height: 50px;
+			border-radius: 50%;
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			cursor: pointer;
+			box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+			transition: all 0.3s;
+			opacity: 0;
+			pointer-events: none;
+		}
+		
+		.back-to-top.visible {
+			opacity: 1;
+			pointer-events: all;
+		}
+		
+		.back-to-top:hover {
+			background: #0075ad;
+			transform: translateY(-5px);
+		}
+	</style>
+</head>
+<body>
+	<div class="guide-container">
+		<!-- Header -->
+		<div class="guide-header">
+			<h1><i class="fas fa-lightbulb"></i> Guia do Colaborador</h1>
+			<p>Sistema Orion Kaizen - Como usar todas as funcionalidades</p>
+		</div>
+		
+		<!-- Navigation -->
+		<nav class="guide-nav">
+			<div class="container">
+				<ul class="nav nav-pills justify-content-center">
+					<li class="nav-item"><a class="nav-link" href="#inicio">Início</a></li>
+					<li class="nav-item"><a class="nav-link" href="#login">Login</a></li>
+					<li class="nav-item"><a class="nav-link" href="#criar">Criar Kaizen</a></li>
+					<li class="nav-item"><a class="nav-link" href="#acompanhar">Acompanhar</a></li>
+					<li class="nav-item"><a class="nav-link" href="#pontos">Pontos</a></li>
+					<li class="nav-item"><a class="nav-link" href="#produtos">Produtos</a></li>
+				</ul>
+			</div>
+		</nav>
+		
+		<!-- Content -->
+		<div class="guide-content">
+			
+			<!-- Seção: Início -->
+			<section id="inicio" class="section">
+				<h2><i class="fas fa-home"></i> Bem-vindo ao Sistema Kaizen</h2>
+				
+				<p class="lead">O Sistema Orion Kaizen é uma plataforma de melhoria contínua onde você pode registrar suas ideias e ganhar pontos para trocar por produtos.</p>
+				
+				<div class="feature-grid">
+					<a href="#criar" class="feature-card" style="text-decoration: none; color: inherit; cursor: pointer;">
+						<i class="fas fa-plus-circle"></i>
+						<h4>Criar Kaizen</h4>
+						<p>Registre suas ideias de melhoria</p>
+					</a>
+					<a href="#pontos" class="feature-card" style="text-decoration: none; color: inherit; cursor: pointer;">
+						<i class="fas fa-star"></i>
+						<h4>Ganhar Pontos</h4>
+						<p>Receba pontos por ideias aprovadas</p>
+					</a>
+					<a href="#produtos" class="feature-card" style="text-decoration: none; color: inherit; cursor: pointer;">
+						<i class="fas fa-gift"></i>
+						<h4>Trocar Pontos</h4>
+						<p>Resgate produtos no catálogo</p>
+					</a>
+					<a href="#acompanhar" class="feature-card" style="text-decoration: none; color: inherit; cursor: pointer;">
+						<i class="fas fa-chart-line"></i>
+						<h4>Acompanhar</h4>
+						<p>Veja o status das suas ideias</p>
+					</a>
+				</div>
+			</section>
+			
+			<!-- Seção: Login -->
+			<section id="login" class="section">
+				<h2><i class="fas fa-sign-in-alt"></i> Como Fazer Login</h2>
+				
+			<div class="step-card">
+				<div class="d-flex align-items-start">
+					<span class="step-number">1</span>
+					<div>
+						<div class="step-title">Acesse o Sistema</div>
+						<p>Entre no endereço fornecido pela sua empresa (ex: http://sistema.empresa.com/)</p>
+						<img src="../imgs/colaborador-login.svg" alt="Tela de Login" class="screenshot">
+					</div>
+				</div>
+			</div>				<div class="step-card">
+					<div class="d-flex align-items-start">
+						<span class="step-number">2</span>
+						<div>
+					<div class="step-title">Digite seus Dados</div>
+					<p><strong>Usuário:</strong> Seu nome de usuário<br>
+					<strong>Senha:</strong> Fornecida pelo RH ou gestor</p>
+						</div>
+					</div>
+				</div>
+				
+				<div class="step-card">
+					<div class="d-flex align-items-start">
+						<span class="step-number">3</span>
+						<div>
+							<div class="step-title">Marque "Lembrar-me"</div>
+							<p>Para não precisar fazer login toda vez (opcional)</p>
+						</div>
+					</div>
+				</div>
+				
+				<div class="tip-box">
+					<i class="fas fa-info-circle"></i>
+					<strong>Esqueceu a senha?</strong> Clique em "Esqueci minha senha" e siga as instruções por email.
+				</div>
+			</section>
+			
+			<!-- Seção: Criar Kaizen -->
+			<section id="criar" class="section">
+				<h2><i class="fas fa-plus-circle"></i> Como Criar um Kaizen</h2>
+				
+			<div class="step-card">
+				<div class="d-flex align-items-start">
+					<span class="step-number">1</span>
+					<div>
+						<div class="step-title">Clique em "Novo Kaizen"</div>
+						<p>No menu principal, selecione a opção "Novo Kaizen"</p>
+						<img src="../imgs/colaborador-novo-kaizen.svg" alt="Formulário Novo Kaizen" class="screenshot">
+					</div>
+				</div>
+			</div>				<div class="step-card">
+					<div class="d-flex align-items-start">
+						<span class="step-number">2</span>
+						<div>
+						<div class="step-title">Escolha o Tipo de Benefício</div>
+						<p>Selecione qual tipo de melhoria sua ideia representa:</p>
+						<ul class="mt-2">
+							<li><strong>Qualidade:</strong> Melhorias focadas na qualidade do produto</li>
+							<li><strong>Segurança:</strong> Melhorias que reduzem/evitam riscos e acidentes</li>
+							<li><strong>Meio Ambiente:</strong> Melhorias focadas a evitar o impacto ambiental</li>
+							<li><strong>Fluxo de trabalho:</strong> Melhoria que otimizam o tempo de trabalho</li>
+							
+							<li><strong>Custos:</strong> Redução de desperdício</li>
+							<li><strong>Produtividade:</strong> Melhorias que geram aumento de produto produzido</li>
+						</ul>
+						</div>
+					</div>
+				</div>
+				
+				<div class="step-card">
+					<div class="d-flex align-items-start">
+						<span class="step-number">3</span>
+						<div>
+							<div class="step-title">Informe o Valor do Benefício</div>
+							<p>Dependendo do tipo escolhido, informe:</p>
+							<ul class="mt-2">
+								<li><strong>Reais economizados:</strong> Digite o valor em R$</li>
+								<li><strong>Horas poupadas:</strong> Digite quantas horas por ano</li>
+								<li><strong>Kg de carbono:</strong> Digite a quantidade reduzida</li>
+							</ul>
+							<div class="warning-box mt-3">
+								<i class="fas fa-exclamation-triangle"></i>
+								Valores acima de R$ 15.000,00 exigirão justificativa adicional.
+							</div>
+						</div>
+					</div>
+				</div>
+				
+				<div class="step-card">
+					<div class="d-flex align-items-start">
+						<span class="step-number">4</span>
+						<div>
+							<div class="step-title">Descreva sua Ideia</div>
+							<p>Preencha os três campos de texto:</p>
+							<ul class="mt-2">
+								<li><strong>Situação Atual:</strong> Como era antes da melhoria</li>
+								<li><strong>Objetivo:</strong> Onde e como aplicou a ideia</li>
+								<li><strong>Resultado:</strong> Quais foram os ganhos obtidos</li>
+							</ul>
+						</div>
+					</div>
+				</div>
+				
+			<div class="step-card">
+				<div class="d-flex align-items-start">
+					<span class="step-number">5</span>
+					<div>
+						<div class="step-title">Anexe Arquivos</div>
+						<p>Adicione evidências da sua melhoria:</p>
+						<ul class="mt-2">
+							<li>Fotos do antes e depois</li>
+							<li>Planilhas de cálculo</li>
+							<li>Documentos de suporte</li>
+						</ul>
+						<img src="../imgs/colaborador-upload.svg" alt="Área de Upload Drag-and-Drop" class="screenshot">
+						<div class="tip-box mt-3">
+							<i class="fas fa-info-circle"></i>
+							Você pode arrastar e soltar os arquivos diretamente na área de upload!
+						</div>
+					</div>
+				</div>
+			</div>				<div class="step-card">
+					<div class="d-flex align-items-start">
+						<span class="step-number">6</span>
+						<div>
+							<div class="step-title">Adicione Colaboradores (Opcional)</div>
+							<p>Se outras pessoas ajudaram, selecione até 2 colaboradores</p>
+						</div>
+					</div>
+				</div>
+				
+				<div class="step-card">
+					<div class="d-flex align-items-start">
+						<span class="step-number">7</span>
+						<div>
+							<div class="step-title">Envie para Análise</div>
+							<p>Revise tudo e clique em "Enviar Kaizen"</p>
+							<div class="tip-box mt-3">
+								<i class="fas fa-info-circle"></i>
+								Você receberá um email quando seu Kaizen for analisado!
+							</div>
+						</div>
+					</div>
+				</div>
+			</section>
+			
+			<!-- Seção: Acompanhar -->
+			<section id="acompanhar" class="section">
+				<h2><i class="fas fa-list"></i> Como Acompanhar seus Kaizens</h2>
+				
+			<div class="step-card">
+				<div class="d-flex align-items-start">
+					<span class="step-number">1</span>
+					<div>
+						<div class="step-title">Acesse "Minhas Sugestões"</div>
+						<p>Veja todos os Kaizens que você enviou</p>
+						<img src="../imgs/colaborador-minhas-sugestoes.svg" alt="Lista Minhas Sugestões" class="screenshot">
+					</div>
+				</div>
+			</div>				<div class="step-card">
+					<div class="d-flex align-items-start">
+						<span class="step-number">2</span>
+						<div>
+							<div class="step-title">Entenda os Status</div>
+							<ul class="mt-2">
+								<li><span class="badge bg-warning text-dark">Pendente</span> - Aguardando análise do líder</li>
+								<li><span class="badge bg-success">Aprovado</span> - Kaizen aprovado, pontos creditados!</li>
+								<li><span class="badge bg-danger">Rejeitado</span> - Não aprovado, veja o motivo</li>
+								<li><span class="badge bg-info">Devolvido</span> - Precisa de ajustes, edite e reenvie</li>
+							</ul>
+						</div>
+					</div>
+				</div>
+				
+				<div class="step-card">
+					<div class="d-flex align-items-start">
+						<span class="step-number">3</span>
+						<div>
+							<div class="step-title">Editar Kaizen Devolvido</div>
+							<p>Se seu Kaizen foi devolvido:</p>
+							<ol class="mt-2">
+								<li>Clique em "Editar"</li>
+								<li>Leia o comentário do líder</li>
+								<li>Faça as correções necessárias</li>
+								<li>Salve para nova análise</li>
+							</ol>
+						</div>
+					</div>
+				</div>
+			</section>
+			
+			<!-- Seção: Pontos -->
+			<section id="pontos" class="section">
+				<h2><i class="fas fa-star"></i> Sistema de Pontos</h2>
+				
+				<div class="step-card">
+					<div class="d-flex align-items-start">
+						<span class="step-number">1</span>
+						<div>
+							<div class="step-title">Como Ganhar Pontos</div>
+							<p>Você ganha pontos quando seu Kaizen é aprovado.</p>
+						
+						</div>
+					</div>
+				</div>
+				
+				<div class="step-card">
+					<div class="d-flex align-items-start">
+						<span class="step-number">2</span>
+						<div>
+							<div class="step-title">Ver Saldo</div>
+							<p>Seu saldo de pontos aparece sempre no topo da tela:</p>
+							<div class="alert alert-info mt-2">
+								<i class="fas fa-star"></i> <strong>Saldo:</strong> 250 pontos
+							</div>
+						</div>
+					</div>
+				</div>
+				
+				<div class="step-card">
+					<div class="d-flex align-items-start">
+						<span class="step-number">3</span>
+						<div>
+							<div class="step-title">Extrato de Pontos</div>
+							<p>Para ver todo histórico:</p>
+							<ol class="mt-2">
+								<li>Clique em "Extrato de Pontos"</li>
+								<li>Veja todas movimentações (ganhos e resgates)</li>
+								<li>Confira data e descrição de cada transação</li>
+							</ol>
+						</div>
+					</div>
+				</div>
+			</section>
+			
+			<!-- Seção: Produtos -->
+			<section id="produtos" class="section">
+				<h2><i class="fas fa-gift"></i> Catálogo de Produtos</h2>
+				
+			<div class="step-card">
+				<div class="d-flex align-items-start">
+					<span class="step-number">1</span>
+					<div>
+						<div class="step-title">Acessar o Catálogo</div>
+						<p>Clique em "Trocar Pontos" no menu principal</p>
+						<img src="../imgs/colaborador-catalogo.svg" alt="Catálogo de Produtos" class="screenshot">
+					</div>
+				</div>
+			</div>				<div class="step-card">
+					<div class="d-flex align-items-start">
+						<span class="step-number">2</span>
+						<div>
+							<div class="step-title">Escolher Produto</div>
+							<p>Navegue pelas categorias e veja:</p>
+							<ul class="mt-2">
+								<li>Foto do produto</li>
+								<li>Descrição</li>
+								<li>Quantidade de pontos necessária</li>
+							</ul>
+						</div>
+					</div>
+				</div>
+				
+				<div class="step-card">
+					<div class="d-flex align-items-start">
+						<span class="step-number">3</span>
+						<div>
+							<div class="step-title">Resgatar</div>
+							<p>Se você tem pontos suficientes:</p>
+							<ol class="mt-2">
+								<li>Clique em "Resgatar"</li>
+								<li>Confirme a troca</li>
+					
+							</ol>
+							<div class="warning-box mt-3">
+								<i class="fas fa-exclamation-triangle"></i>
+								Após confirmar o resgate, os pontos são debitados imediatamente e a ação não pode ser desfeita.
+							</div>
+						</div>
+					</div>
+				</div>
+				
+				<div class="step-card">
+					<div class="d-flex align-items-start">
+						<span class="step-number">4</span>
+						<div>
+							<div class="step-title">Acompanhar Resgates</div>
+							<p>Veja seu histórico em "Minhas Trocas"</p>
+						</div>
+					</div>
+				</div>
+			</section>
+			
+			<!-- Ajuda -->
+			<section class="section">
+				<h2><i class="fas fa-question-circle"></i> Precisa de Ajuda?</h2>
+				<div class="alert alert-info">
+					<h5><i class="fas fa-envelope"></i> Entre em contato</h5>
+					<p class="mb-0">Para dúvidas ou problemas técnicos, entre em contato com seu gestor direto.</p>
+				</div>
+			</section>
+			
+		</div>
+	</div>
+	
+	<!-- Back to Top Button -->
+	<div class="back-to-top" id="backToTop">
+		<i class="fas fa-arrow-up"></i>
+	</div>
+	
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+	<script>
+		// Smooth scroll para navegação
+		document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+			anchor.addEventListener('click', function (e) {
+				e.preventDefault();
+				const target = document.querySelector(this.getAttribute('href'));
+				if (target) {
+					target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+					
+					// Atualizar nav ativo
+					document.querySelectorAll('.guide-nav .nav-link').forEach(link => {
+						link.classList.remove('active');
+					});
+					this.classList.add('active');
+				}
+			});
+		});
+		
+		// Back to top button
+		const backToTop = document.getElementById('backToTop');
+		window.addEventListener('scroll', () => {
+			if (window.scrollY > 300) {
+				backToTop.classList.add('visible');
+			} else {
+				backToTop.classList.remove('visible');
+			}
+		});
+		
+		backToTop.addEventListener('click', () => {
+			window.scrollTo({ top: 0, behavior: 'smooth' });
+		});
+		
+		// Destacar seção ativa ao rolar
+		const sections = document.querySelectorAll('.section');
+		const navLinks = document.querySelectorAll('.guide-nav .nav-link');
+		
+		window.addEventListener('scroll', () => {
+			let current = '';
+			sections.forEach(section => {
+				const sectionTop = section.offsetTop;
+				const sectionHeight = section.clientHeight;
+				if (window.scrollY >= (sectionTop - 200)) {
+					current = section.getAttribute('id');
+				}
+			});
+			
+			navLinks.forEach(link => {
+				link.classList.remove('active');
+				if (link.getAttribute('href') === `#${current}`) {
+					link.classList.add('active');
+				}
+			});
+		});
+	</script>
+</body>
+</html>

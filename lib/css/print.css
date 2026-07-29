@@ -1,0 +1,29 @@
+* {
+  backgroundbackground: transparent !important;
+  colorcolor: #000 !important;
+  texttext--shadowshadow: nonenone !important;
+  filterfilter: none !important;
+  -ms-filter: none !important;
+}
+body {
+  margin: 0;
+  padding: 0;
+  line-height: 1.4em;
+	font-size: 12pt !important;
+}
+
+.div1-4, .div1-2{
+	width: 100% !important;
+}
+
+img{
+	max-width: 100% !important;
+	height: auto !important
+}
+
+#spacerTop{
+	height: 1cm !important;
+}
+header{
+	display: none !important;
+}

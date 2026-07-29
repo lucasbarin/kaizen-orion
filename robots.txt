@@ -1,0 +1,6 @@
+User-agent: *
+Disallow: 
+Disallow: /cgi-bin/
+Disallow: /app/
+Disallow: /admin/
+Sitemap: http://www.yoursite.com/sitemap.xml

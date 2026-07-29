@@ -1,0 +1,91 @@
+/* here you can put your own css to customize and override the theme */
+
+/* Preloader */
+#preloader {
+	position: fixed;
+	top:0;
+	left:0;
+	right:0;
+	bottom:0;
+	background-color:#fff; /* change if the mask should have another color then white */
+	z-index:99; /* makes sure it stays on top */
+}
+
+#status {
+	width:200px;
+	height:200px;
+	position:absolute;
+	left:50%; /* centers the loading animation horizontally one the screen */
+	top:50%; /* centers the loading animation vertically one the screen */
+	background-image: url(../../../global/img/loading-spinner-grey.gif); /* path to your loading animation */
+	background-repeat:no-repeat;
+	background-position:center;
+	margin:-100px 0 0 -100px; /* is width and height divided by two */
+}
+
+#loader{
+	display: none;
+}
+input.numeros{
+	text-align: left !important;
+}
+
+.align-dir{
+	text-align: right !important;
+}
+
+.align-esq{
+	text-align: left !important;
+}
+
+.align-cen{
+	text-align: center !important;
+}
+
+.float-dir{
+	float: right !important;
+}
+
+.float-esq{
+	text-align: left !important;
+}
+
+.invisivel{
+	width: 1px;
+	display: inline-block;
+	opacity: 0;
+	visibility: hidden;
+	overflow: hidden;
+	float: left;
+}
+
+.txt-p{
+	font-size: 0.7em;
+}
+
+.cor-vermelho{
+    color: #A70002;
+}
+.cor-verde{
+    color: #007924;
+}
+
+
+
+/***
+Rounded Portlets
+***/
+/*
+.portlet {
+	border-radius: 4px !important;
+}
+
+.portlet .portlet-title {
+	border-radius: 4px 4px 0px 0px !important;
+}
+
+.portlet .portlet-body,
+.portlet .portlet-body .form-actions  {
+	border-radius: 0px 0px 4px 4px !important;
+}
+*/

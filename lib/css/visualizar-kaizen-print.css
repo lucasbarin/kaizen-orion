@@ -1,0 +1,467 @@
+/**
+ * CSS de Impressão para Visualizar Kaizen
+ * Sistema Orion Kaizen v2.0
+ * Otimizado para impressão em A4
+ */
+
+@media print {
+	/* ===========================
+	   CONFIGURAÇÃO DA PÁGINA
+	   =========================== */
+	@page {
+		size: A4 portrait;
+		margin: 15mm 10mm;
+	}
+	
+	* {
+		-webkit-print-color-adjust: exact !important;
+		print-color-adjust: exact !important;
+		color-adjust: exact !important;
+	}
+	
+	body {
+		background: white !important;
+		font-size: 10pt !important;
+		line-height: 1.4 !important;
+		color: #000 !important;
+		margin: 0 !important;
+		padding: 0 !important;
+	}
+	
+	/* ===========================
+	   OCULTAR ELEMENTOS
+	   =========================== */
+	.navbar,
+	.breadcrumb,
+	.btn,
+	.btn-outline-primary,
+	.btn-outline-secondary,
+	.navbar-nav,
+	.navbar-brand,
+	.navbar-toggler,
+	.d-flex.gap-2,
+	nav[aria-label="breadcrumb"],
+	.gallery-item:hover,
+	.attachment-item:hover {
+		display: none !important;
+	}
+	
+	/* ===========================
+	   CONTAINER E LAYOUT
+	   =========================== */
+	.container {
+		max-width: 100% !important;
+		width: 100% !important;
+		padding: 0 !important;
+		margin: 0 !important;
+	}
+	
+	main {
+		padding: 0 !important;
+		margin: 0 !important;
+	}
+	
+	.row {
+		margin: 0 !important;
+	}
+	
+	.col-lg-4,
+	.col-lg-8,
+	.col-md-4,
+	.col-md-8 {
+		width: 100% !important;
+		max-width: 100% !important;
+		padding: 0 !important;
+		margin: 0 !important;
+	}
+	
+	/* ===========================
+	   HEADER DO KAIZEN
+	   =========================== */
+	.kaizen-header-card {
+		background: #009ee3 !important;
+		background: linear-gradient(135deg, #009ee3 0%, #007ab8 100%) !important;
+		color: #000 !important;
+		border-radius: 0 !important;
+		padding: 15mm !important;
+		margin: 0 0 5mm 0 !important;
+		box-shadow: none !important;
+		border: 2px solid #009ee3 !important;
+		page-break-after: avoid !important;
+	}
+	
+	.kaizen-header-card * {
+		color: #000 !important;
+	}
+	
+	.kaizen-header-card::before {
+		display: none !important;
+	}
+	
+	.kaizen-number {
+		font-size: 28pt !important;
+		font-weight: 700 !important;
+		margin-bottom: 3mm !important;
+		color: #000 !important;
+	}
+	
+	.kaizen-header-card h4 {
+		font-size: 14pt !important;
+		margin: 0 !important;
+		color: #000 !important;
+	}
+	
+	/* Status Badges */
+	.badge-status {
+		display: inline-block !important;
+		padding: 3mm 5mm !important;
+		border-radius: 3mm !important;
+		font-size: 11pt !important;
+		font-weight: 600 !important;
+		background: white !important;
+		border: 2px solid #000 !important;
+	}
+	
+	.status-pendente {
+		background: #fff3cd !important;
+		border-color: #ffc107 !important;
+		color: #856404 !important;
+	}
+	
+	.status-aprovado {
+		background: #d4edda !important;
+		border-color: #28a745 !important;
+		color: #155724 !important;
+	}
+	
+	.status-rejeitado {
+		background: #f8d7da !important;
+		border-color: #dc3545 !important;
+		color: #721c24 !important;
+	}
+	
+	.status-rascunho {
+		background: #e7e7e7 !important;
+		border-color: #6c757d !important;
+		color: #383d41 !important;
+	}
+	
+	/* ===========================
+	   CARDS DE INFORMAÇÃO
+	   =========================== */
+	.info-card,
+	.content-card {
+		background: white !important;
+		border: 1px solid #ddd !important;
+		border-left: 3px solid #009ee3 !important;
+		border-radius: 0 !important;
+		padding: 4mm !important;
+		margin: 0 0 4mm 0 !important;
+		box-shadow: none !important;
+		page-break-inside: avoid !important;
+	}
+	
+	.info-card h5,
+	.content-card h5 {
+		color: #009ee3 !important;
+		font-weight: 600 !important;
+		font-size: 12pt !important;
+		margin: 0 0 3mm 0 !important;
+		padding-bottom: 2mm !important;
+		border-bottom: 2px solid #009ee3 !important;
+	}
+	
+	.info-card h5 i,
+	.content-card h5 i {
+		color: #009ee3 !important;
+	}
+	
+	/* ===========================
+	   LINHAS DE INFORMAÇÃO
+	   =========================== */
+	.info-row {
+		display: flex !important;
+		padding: 2mm 0 !important;
+		border-bottom: 1px solid #e0e0e0 !important;
+		page-break-inside: avoid !important;
+	}
+	
+	.info-row:last-child {
+		border-bottom: none !important;
+	}
+	
+	.info-label {
+		font-weight: 600 !important;
+		color: #000 !important;
+		min-width: 45mm !important;
+		flex-shrink: 0 !important;
+		font-size: 9pt !important;
+	}
+	
+	.info-value {
+		color: #333 !important;
+		flex-grow: 1 !important;
+		font-size: 9pt !important;
+	}
+	
+	/* ===========================
+	   DESTAQUES DE VALOR
+	   =========================== */
+	.value-highlight {
+		background: #fcd700 !important;
+		border: 2px solid #e0c100 !important;
+		color: #000 !important;
+		padding: 4mm !important;
+		border-radius: 3mm !important;
+		text-align: center !important;
+		margin: 3mm 0 !important;
+		box-shadow: none !important;
+		page-break-inside: avoid !important;
+	}
+	
+	.value-highlight .amount {
+		font-size: 16pt !important;
+		font-weight: 700 !important;
+		margin: 0 !important;
+		color: #000 !important;
+	}
+	
+	.value-highlight small {
+		font-size: 9pt !important;
+		color: #333 !important;
+	}
+	
+	/* Variante azul para pontos */
+	.value-highlight[style*="--orion-primary"] {
+		background: #009ee3 !important;
+		border-color: #007ab8 !important;
+	}
+	
+	.value-highlight[style*="--orion-primary"] .amount,
+	.value-highlight[style*="--orion-primary"] small {
+		color: #fff !important;
+	}
+	
+	/* ===========================
+	   CONTEÚDO DE TEXTO
+	   =========================== */
+	.content-text {
+		line-height: 1.6 !important;
+		color: #000 !important;
+		font-size: 10pt !important;
+	}
+	
+	.content-card p {
+		margin-bottom: 3mm !important;
+	}
+	
+	.content-card .fw-bold {
+		font-weight: 600 !important;
+		color: #000 !important;
+		font-size: 10pt !important;
+	}
+	
+	/* ===========================
+	   BADGES E ETIQUETAS
+	   =========================== */
+	.badge {
+		display: inline-block !important;
+		padding: 1mm 3mm !important;
+		border-radius: 2mm !important;
+		font-size: 9pt !important;
+		font-weight: 600 !important;
+		border: 1px solid !important;
+	}
+	
+	.badge.bg-success {
+		background: #d4edda !important;
+		border-color: #28a745 !important;
+		color: #155724 !important;
+	}
+	
+	.badge.bg-secondary {
+		background: #e7e7e7 !important;
+		border-color: #6c757d !important;
+		color: #383d41 !important;
+	}
+	
+	/* ===========================
+	   COLABORADORES
+	   =========================== */
+	.collaborators-list {
+		display: flex !important;
+		flex-wrap: wrap !important;
+		gap: 2mm !important;
+		margin-top: 3mm !important;
+	}
+	
+	.collaborator-badge {
+		background: #009ee3 !important;
+		color: #fff !important;
+		padding: 2mm 4mm !important;
+		border-radius: 10mm !important;
+		font-size: 9pt !important;
+		display: inline-flex !important;
+		align-items: center !important;
+		gap: 1mm !important;
+		border: 1px solid #007ab8 !important;
+	}
+	
+	.collaborator-badge i {
+		color: #fff !important;
+	}
+	
+	/* ===========================
+	   GALERIA DE IMAGENS
+	   =========================== */
+	.gallery-grid {
+		display: grid !important;
+		grid-template-columns: repeat(3, 1fr) !important;
+		gap: 3mm !important;
+		margin-top: 3mm !important;
+		page-break-inside: avoid !important;
+	}
+	
+	.gallery-item {
+		position: relative !important;
+		border: 1px solid #ddd !important;
+		border-radius: 0 !important;
+		overflow: hidden !important;
+		box-shadow: none !important;
+		page-break-inside: avoid !important;
+	}
+	
+	.gallery-item img {
+		width: 100% !important;
+		height: auto !important;
+		max-height: 40mm !important;
+		object-fit: cover !important;
+		display: block !important;
+	}
+	
+	/* ===========================
+	   ANEXOS / DOCUMENTOS
+	   =========================== */
+	.attachment-item {
+		background: #f8f9fa !important;
+		border: 1px solid #ddd !important;
+		border-radius: 0 !important;
+		padding: 3mm !important;
+		margin-bottom: 2mm !important;
+		display: flex !important;
+		align-items: center !important;
+		gap: 3mm !important;
+		page-break-inside: avoid !important;
+	}
+	
+	.attachment-icon {
+		width: 12mm !important;
+		height: 12mm !important;
+		background: #009ee3 !important;
+		color: white !important;
+		border-radius: 2mm !important;
+		display: flex !important;
+		align-items: center !important;
+		justify-content: center !important;
+		font-size: 12pt !important;
+		flex-shrink: 0 !important;
+		border: 1px solid #007ab8 !important;
+	}
+	
+	.attachment-item strong {
+		font-size: 9pt !important;
+		color: #000 !important;
+	}
+	
+	.attachment-item .text-muted {
+		font-size: 8pt !important;
+		color: #666 !important;
+	}
+	
+	/* Ocultar botões de download */
+	.attachment-item .btn {
+		display: none !important;
+	}
+	
+	/* ===========================
+	   QUEBRAS DE PÁGINA
+	   =========================== */
+	.kaizen-header-card {
+		page-break-after: avoid !important;
+	}
+	
+	.content-card,
+	.info-card {
+		page-break-inside: avoid !important;
+	}
+	
+	h5, h6 {
+		page-break-after: avoid !important;
+	}
+	
+	/* ===========================
+	   TÍTULOS E SUBTÍTULOS
+	   =========================== */
+	h6 {
+		font-size: 11pt !important;
+		font-weight: 600 !important;
+		color: #000 !important;
+		margin: 3mm 0 2mm 0 !important;
+	}
+	
+	/* ===========================
+	   LINKS
+	   =========================== */
+	a {
+		color: #000 !important;
+		text-decoration: none !important;
+	}
+	
+	a[href]:after {
+		content: "" !important;
+	}
+	
+	/* ===========================
+	   ESPAÇAMENTOS GERAIS
+	   =========================== */
+	.mb-2, .mb-3, .mb-4 {
+		margin-bottom: 3mm !important;
+	}
+	
+	.mt-3, .mt-4 {
+		margin-top: 3mm !important;
+	}
+	
+	.py-5 {
+		padding: 0 !important;
+	}
+	
+	/* ===========================
+	   SMALL E TEXT-MUTED
+	   =========================== */
+	small, .small {
+		font-size: 8pt !important;
+	}
+	
+	.text-muted {
+		color: #666 !important;
+	}
+	
+	/* ===========================
+	   ÍCONES FONT AWESOME
+	   =========================== */
+	.fas, .far, .fab {
+		font-size: inherit !important;
+	}
+	
+	/* ===========================
+	   RODAPÉ DE IMPRESSÃO
+	   =========================== */
+	@page {
+		@bottom-center {
+			content: "Página " counter(page) " de " counter(pages);
+			font-size: 8pt;
+			color: #666;
+		}
+	}
+}

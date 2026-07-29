@@ -1,0 +1,549 @@
+/* ========================================
+   ORION KAIZEN - CUSTOMIZAÇÕES BOOTSTRAP 5
+   Mantém identidade visual Orion
+   ======================================== */
+
+/* === VARIÁVEIS DE CORES ORION === */
+:root {
+	--orion-primary: #009ee3;
+	--orion-primary-dark: #0088c7;
+	--orion-primary-light: #33b3e8;
+	--orion-secondary: #fcd700;
+	--orion-secondary-dark: #e0c100;
+	--orion-text: #565656;
+	--orion-text-light: #999;
+	--orion-success: #00812e;
+	--orion-danger: #c00003;
+	--orion-warning: #a49819;
+	--orion-light: #f8f9fa;
+	--orion-dark: #2c3e50;
+}
+
+/* === CONFIGURAÇÃO GLOBAL === */
+body {
+	font-family: 'Inter', 'Arial', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+	color: var(--orion-text);
+	background-color: #ffffff;
+	font-size: 16px;
+	line-height: 1.6;
+}
+
+/* Background gradiente suave */
+.orion-body-gradient {
+	background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 50%, #f0f4f8 100%);
+	min-height: 100vh;
+}
+
+/* === NAVBAR CUSTOMIZADA === */
+.orion-navbar {
+	background-color: #ffffff !important;
+	border-bottom: 3px solid var(--orion-primary);
+	padding: 0.75rem 0;
+}
+
+/* Navbar com glassmorphism (versão v2 moderna) */
+.orion-navbar-glass {
+	background: rgba(255, 255, 255, 0.95) !important;
+	backdrop-filter: blur(10px);
+	-webkit-backdrop-filter: blur(10px);
+	border-bottom: 1px solid rgba(0, 158, 227, 0.2);
+	box-shadow: 0 4px 30px rgba(0, 0, 0, 0.05);
+	padding: 0.75rem 0;
+}
+
+.orion-navbar .navbar-brand img {
+	height: 40px;
+	width: auto;
+}
+
+.orion-navbar .nav-link {
+	color: var(--orion-text) !important;
+	font-weight: 500;
+	padding: 0.5rem 1rem !important;
+	transition: all 0.3s ease;
+}
+
+.orion-navbar .nav-link:hover {
+	color: var(--orion-primary) !important;
+	background-color: rgba(0, 158, 227, 0.05);
+	border-radius: 0.375rem;
+}
+
+.orion-navbar .nav-link i {
+	margin-right: 0.5rem;
+	color: var(--orion-primary);
+}
+
+/* === BOTÕES ORION === */
+.btn-primary {
+	background-color: var(--orion-primary);
+	border-color: var(--orion-primary);
+	color: #ffffff;
+	font-weight: 500;
+	padding: 0.5rem 1.5rem;
+	border-radius: 2rem;
+	transition: all 0.3s ease;
+}
+
+.btn-primary:hover,
+.btn-primary:focus {
+	background-color: var(--orion-primary-dark);
+	border-color: var(--orion-primary-dark);
+	color: #ffffff;
+	box-shadow: 0 0.5rem 1rem rgba(0, 158, 227, 0.3);
+	transform: translateY(-2px);
+}
+
+.btn-outline-primary {
+	color: var(--orion-primary);
+	border-color: var(--orion-primary);
+	border-radius: 2rem;
+	font-weight: 500;
+	padding: 0.5rem 1.5rem;
+}
+
+.btn-outline-primary:hover {
+	background-color: var(--orion-primary);
+	border-color: var(--orion-primary);
+	color: #ffffff;
+}
+
+.btn-warning {
+	background-color: var(--orion-secondary);
+	border-color: var(--orion-secondary);
+	color: #2c3e50;
+	font-weight: 600;
+}
+
+.btn-warning:hover {
+	background-color: var(--orion-secondary-dark);
+	border-color: var(--orion-secondary-dark);
+}
+
+.btn-success {
+	background-color: var(--orion-success);
+	border-color: var(--orion-success);
+	border-radius: 2rem;
+}
+
+.btn-danger {
+	background-color: var(--orion-danger);
+	border-color: var(--orion-danger);
+	border-radius: 2rem;
+}
+
+/* Botões de ação principais da home */
+.btn-action-home {
+	display: block;
+	width: 100%;
+	background: var(--orion-primary);
+	color: #ffffff;
+	padding: 1.25rem 1.5rem;
+	margin-bottom: 1rem;
+	border-radius: 0.75rem;
+	font-size: 1.1rem;
+	font-weight: 500;
+	text-decoration: none;
+	border: none;
+	transition: all 0.3s ease;
+	box-shadow: 0 2px 4px rgba(0, 158, 227, 0.2);
+}
+
+.btn-action-home:hover {
+	background: var(--orion-primary-dark);
+	color: #ffffff;
+	box-shadow: 0 4px 12px rgba(0, 158, 227, 0.3);
+	transform: translateY(-3px);
+}
+
+.btn-action-home i {
+	margin-right: 0.75rem;
+	font-size: 1.3rem;
+}
+
+/* === BADGES === */
+.badge {
+	padding: 0.5rem 0.75rem;
+	font-weight: 500;
+	border-radius: 0.5rem;
+}
+
+.bg-warning {
+	background-color: var(--orion-secondary) !important;
+	color: #2c3e50 !important;
+}
+
+.badge-pontos {
+	background: linear-gradient(135deg, var(--orion-secondary) 0%, #e0c100 100%);
+	color: #2c3e50;
+	font-size: 0.95rem;
+	padding: 0.4rem 0.8rem;
+	font-weight: 600;
+	border-radius: 0.5rem;
+	box-shadow: 0 2px 8px rgba(252, 215, 0, 0.3);
+	display: inline-block;
+}
+
+/* Status dos Kaizens */
+.badge-pendente {
+	background-color: var(--orion-warning);
+	color: #ffffff;
+}
+
+.badge-aprovado {
+	background-color: var(--orion-success);
+	color: #ffffff;
+}
+
+.badge-rejeitado {
+	background-color: var(--orion-danger);
+	color: #ffffff;
+}
+
+/* === CARDS === */
+.card {
+	border: none;
+	border-radius: 0.75rem;
+	box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+	transition: all 0.3s ease;
+	margin-bottom: 1.5rem;
+}
+
+.card:hover {
+	box-shadow: 0 4px 16px rgba(0, 0, 0, 0.12);
+	transform: translateY(-4px);
+}
+
+.card-header {
+	background-color: var(--orion-primary);
+	color: #ffffff !important;
+	font-weight: 600;
+	border-radius: 0.75rem 0.75rem 0 0;
+	padding: 1rem 1.5rem;
+	border: none;
+}
+
+/* Garante texto branco em todos os headers com gradiente e seus elementos filhos */
+.card-header,
+.card-header *,
+.card-header h1,
+.card-header h2,
+.card-header h3,
+.card-header h4,
+.card-header h5,
+.card-header h6,
+.card-header p,
+.wizard-header,
+.wizard-header *,
+.wizard-header h1,
+.wizard-header h2,
+.wizard-header h3,
+.wizard-header p,
+.gestor-header,
+.gestor-header *,
+.gestor-header h1,
+.gestor-header h2,
+.gestor-header h3,
+.gestor-header p,
+.kaizen-header-card,
+.kaizen-header-card *,
+.kaizen-header-card h1,
+.kaizen-header-card h2,
+.kaizen-header-card h3,
+.kaizen-header-card h4,
+.kaizen-header-card p {
+	color: white !important;
+}
+
+.card-body {
+	padding: 1.5rem;
+}
+
+.card-kaizen {
+	border-left: 4px solid var(--orion-primary);
+	margin-bottom: 1.25rem;
+}
+
+.card-produto {
+	text-align: center;
+	transition: all 0.3s ease;
+}
+
+.card-produto:hover {
+	border-color: var(--orion-primary);
+	box-shadow: 0 6px 20px rgba(0, 158, 227, 0.2);
+}
+
+.card-produto img {
+	max-width: 100%;
+	height: 200px;
+	object-fit: cover;
+	border-radius: 0.5rem;
+	margin-bottom: 1rem;
+}
+
+/* === ALERTAS === */
+.alert {
+	border-radius: 0.75rem;
+	border: none;
+	padding: 1.25rem;
+	margin-bottom: 1.5rem;
+}
+
+.alert-success {
+	background-color: rgba(0, 129, 46, 0.1);
+	color: var(--orion-success);
+	border-left: 4px solid var(--orion-success);
+}
+
+.alert-danger {
+	background-color: rgba(192, 0, 3, 0.1);
+	color: var(--orion-danger);
+	border-left: 4px solid var(--orion-danger);
+}
+
+.alert-warning {
+	background-color: rgba(252, 215, 0, 0.15);
+	color: #856404;
+	border-left: 4px solid var(--orion-secondary);
+}
+
+.alert-info {
+	background-color: rgba(0, 158, 227, 0.1);
+	color: var(--orion-primary);
+	border-left: 4px solid var(--orion-primary);
+}
+
+/* === FORMULÁRIOS === */
+.form-label {
+	font-weight: 600;
+	color: var(--orion-text);
+	margin-bottom: 0.5rem;
+}
+
+.form-control,
+.form-select {
+	border: 2px solid #e0e0e0;
+	border-radius: 0.5rem;
+	padding: 0.75rem 1rem;
+	font-size: 1rem;
+	transition: all 0.3s ease;
+}
+
+.form-control:focus,
+.form-select:focus {
+	border-color: var(--orion-primary);
+	box-shadow: 0 0 0 0.25rem rgba(0, 158, 227, 0.15);
+}
+
+.form-control::placeholder {
+	color: #a9a9a9;
+}
+
+textarea.form-control {
+	min-height: 150px;
+}
+
+/* === TABELAS === */
+.table {
+	border-radius: 0.75rem;
+	overflow: hidden;
+}
+
+.table thead {
+	background-color: var(--orion-primary);
+	color: #ffffff;
+}
+
+.table thead th {
+	font-weight: 600;
+	border: none;
+	padding: 1rem;
+}
+
+.table tbody tr {
+	transition: all 0.2s ease;
+}
+
+.table tbody tr:hover {
+	background-color: rgba(0, 158, 227, 0.05);
+}
+
+.table-striped tbody tr:nth-of-type(odd) {
+	background-color: rgba(0, 0, 0, 0.02);
+}
+
+/* Tabelas responsivas em mobile */
+@media (max-width: 768px) {
+	.table-responsive {
+		border-radius: 0.75rem;
+		box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+	}
+}
+
+/* === TÍTULOS === */
+h1, h2, h3, h4, h5, h6 {
+	color: var(--orion-primary);
+	font-weight: 600;
+	margin-bottom: 1rem;
+}
+
+h1 {
+	font-size: 2.25rem;
+	margin-bottom: 1.5rem;
+}
+
+h2 {
+	font-size: 1.75rem;
+}
+
+h3 {
+	font-size: 1.5rem;
+}
+
+/* === LINKS === */
+a {
+	color: var(--orion-primary);
+	text-decoration: none;
+	transition: all 0.3s ease;
+}
+
+a:hover {
+	color: var(--orion-primary-dark);
+	text-decoration: none;
+	opacity: 0.9;
+}
+
+/* Remove underline de todos os links com classe Bootstrap */
+.nav-link:hover,
+.breadcrumb-item a:hover,
+.card a:hover,
+.table a:hover {
+	text-decoration: none;
+}
+
+/* === FOOTER === */
+.orion-footer {
+	margin-top: 4rem;
+	padding: 2rem 0;
+	border-top: 3px solid var(--orion-primary);
+	background-color: #f8f9fa;
+}
+
+/* === LOGO === */
+.logo-kaizen-home {
+	max-width: 280px;
+	margin: 0 auto 2rem;
+	display: block;
+}
+
+/* === UTILITÁRIOS === */
+.text-primary {
+	color: var(--orion-primary) !important;
+}
+
+.bg-primary {
+	background-color: var(--orion-primary) !important;
+}
+
+.border-primary {
+	border-color: var(--orion-primary) !important;
+}
+
+/* Separador visual */
+.separator {
+	height: 3px;
+	background: linear-gradient(to right, var(--orion-primary), var(--orion-secondary));
+	border-radius: 2px;
+	margin: 2rem 0;
+}
+
+/* === RESPONSIVIDADE === */
+@media (max-width: 991.98px) {
+	/* Mobile: Menu hamburguer */
+	.navbar-collapse {
+		margin-top: 1rem;
+		padding-top: 1rem;
+		border-top: 1px solid #e0e0e0;
+	}
+	
+	.navbar-nav .nav-item {
+		margin-bottom: 0.5rem;
+	}
+	
+	h1 {
+		font-size: 1.75rem;
+	}
+	
+	h2 {
+		font-size: 1.5rem;
+	}
+	
+	.btn-action-home {
+		padding: 1rem 1.25rem;
+		font-size: 1rem;
+	}
+}
+
+@media (max-width: 575.98px) {
+	/* Mobile pequeno */
+	body {
+		font-size: 14px;
+	}
+	
+	.container {
+		padding-left: 1rem;
+		padding-right: 1rem;
+	}
+	
+	.card-body {
+		padding: 1rem;
+	}
+	
+	.table {
+		font-size: 0.875rem;
+	}
+}
+
+/* === ANIMAÇÕES === */
+@keyframes fadeInUp {
+	from {
+		opacity: 0;
+		transform: translateY(20px);
+	}
+	to {
+		opacity: 1;
+		transform: translateY(0);
+	}
+}
+
+.fade-in-up {
+	animation: fadeInUp 0.6s ease-out;
+}
+
+/* === LOADING/SPINNER === */
+.spinner-orion {
+	border: 3px solid rgba(0, 158, 227, 0.2);
+	border-top: 3px solid var(--orion-primary);
+	border-radius: 50%;
+	width: 40px;
+	height: 40px;
+	animation: spin 1s linear infinite;
+	margin: 2rem auto;
+}
+
+@keyframes spin {
+	0% { transform: rotate(0deg); }
+	100% { transform: rotate(360deg); }
+}
+
+/* === SELEÇÃO DE TEXTO === */
+::selection {
+	background-color: var(--orion-secondary);
+	color: #2c3e50;
+}
+
+::-moz-selection {
+	background-color: var(--orion-secondary);
+	color: #2c3e50;
+}

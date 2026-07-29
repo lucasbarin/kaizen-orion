@@ -1,0 +1,35 @@
+﻿<svg width="1200" height="800" xmlns="http://www.w3.org/2000/svg">
+    <defs>
+        <linearGradient id="grad" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" style="stop-color:#009ee3;stop-opacity:1" />
+            <stop offset="100%" style="stop-color:#0075ad;stop-opacity:1" />
+        </linearGradient>
+    </defs>
+    <rect width="1200" height="800" fill="url(#grad)"/>
+    <rect x="50" y="50" width="1100" height="700" fill="white" opacity="0.95" rx="10"/>
+    
+    <!-- Header simulado -->
+    <rect x="50" y="50" width="1100" height="80" fill="#009ee3" rx="10"/>
+    <text x="600" y="100" font-family="Arial, sans-serif" font-size="28" fill="white" text-anchor="middle" font-weight="bold">Sistema Orion Kaizen</text>
+    
+    <!-- Titulo da tela -->
+    <text x="100" y="180" font-family="Arial, sans-serif" font-size="36" fill="#1a1a2e" font-weight="bold">Extrato de Pontos</text>
+    <line x1="100" y1="200" x2="400" y2="200" stroke="#fcd700" stroke-width="4"/>
+    
+    <!-- Descricao -->
+    <text x="100" y="250" font-family="Arial, sans-serif" font-size="20" fill="#495057">Historico completo de ganhos e resgates</text>
+    
+    <!-- Elementos decorativos simulando conteudo -->
+    <rect x="100" y="300" width="1000" height="60" fill="#f8f9fa" rx="5"/>
+    <rect x="100" y="380" width="1000" height="60" fill="#f8f9fa" rx="5"/>
+    <rect x="100" y="460" width="1000" height="60" fill="#f8f9fa" rx="5"/>
+    
+    <circle cx="130" cy="330" r="20" fill="#009ee3" opacity="0.3"/>
+    <circle cx="130" cy="410" r="20" fill="#009ee3" opacity="0.3"/>
+    <circle cx="130" cy="490" r="20" fill="#009ee3" opacity="0.3"/>
+    
+    <!-- Nota -->
+    <rect x="100" y="600" width="1000" height="100" fill="#fff3cd" rx="5" opacity="0.7"/>
+    <text x="600" y="640" font-family="Arial, sans-serif" font-size="18" fill="#856404" text-anchor="middle">Imagem ilustrativa</text>
+    <text x="600" y="670" font-family="Arial, sans-serif" font-size="16" fill="#856404" text-anchor="middle">Capture a tela real usando: guia\capturar-telas.ps1</text>
+</svg>

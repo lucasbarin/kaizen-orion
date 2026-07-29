@@ -1,0 +1,418 @@
+
+body,
+h1,
+h2,
+h3,
+h4{
+	
+	font-family:Lato, Segoe UI, Lucida Grande, Lucida Sans Unicode, Tahoma, Arial, Helvetica, sans-serif;
+	
+}
+
+body{
+	
+	background: #f8f8f8;
+	
+}
+
+
+h1{ 
+	color: #000;
+	font-weight: 100; 
+	font-size: 38px;
+	line-height:80px
+}
+
+
+.details{ color: #fff; }
+
+.doctable{
+
+	overflow: hidden;
+	border: 1px solid #000;
+	
+	position: relative;
+	margin-bottom: 9px;
+	background: #fff;
+	
+}
+
+.doctable th{
+
+	background: #272822;
+	
+	color: #fff;
+	text-align: left;
+
+}
+
+
+.doctable th,
+.doctable td{
+	
+	padding: 8px;
+	
+}
+
+.doctable tr.even{
+
+	background: #fff6d8;
+	
+}
+
+.doctable tr.highlight{
+	
+	background: #c8ffdb;
+	-webkit-box-shadow: 0 0 5px #00d733;
+	box-shadow: 0 0 2px 0px #00d733;
+
+}
+
+.doctable tr.highlight.even{
+	
+	background: #90e9b0;
+	
+}
+
+pre.prettyprint{
+	
+	margin: 0;
+	-webkit-border-radius: 0;
+	border-radius: 0;
+	width: auto;
+	margin: 9px 0;
+	border-color: #272822;
+
+}
+
+
+/*   UPDATE BUTTON    */
+#updateButton{
+	
+	display: none;
+	
+	-webkit-border-radius: 50px;
+	border-radius: 50px;
+	padding: 18px 18px;
+	font-size: 18px;
+	background: #fff;
+	text-align: center;
+	margin: 26px 4px 0 4px;
+	border: 1px solid #d7ba2f;
+	color: #2a2a2a;
+	
+	 -webkit-box-shadow: 0 1px 1px rgba(0, 0, 0, 0.05);
+          box-shadow: 0 1px 1px rgba(0, 0, 0, 0.05);
+	
+}
+
+#updateButton:hover,
+#updateButton:active{
+	
+	text-decoration: none;
+
+}
+
+.update-available #updateButton{
+	display: block;
+}
+
+.nch-doc-pagehead{
+	
+	background: #ffdc38;
+	position: relative;
+	overflow: hidden;
+	margin: 0;
+	
+	border-bottom: 1px solid #FFF;
+	 -webkit-box-shadow: inset 0 -1px 5px rgba(0, 0, 0, 0.07);
+          box-shadow: inset 0 -1px 5px rgba(0, 0, 0, 0.07);
+ 
+}
+
+.nch-doc-pagehead h1{
+	
+	line-height: 36px;
+	font-size: 36px;
+	font-weight: 300;
+	margin: 40px 0;
+	letter-spacing: -1px;
+	
+}
+
+
+.nch-doc-version{
+	
+	margin-top: 28px;
+	padding: 10px 0;
+	position: relative;
+	display: block;
+	color: #877212;
+
+}
+
+.nch-doc-version a{
+	color: inherit;
+}
+
+.nch-doc-vborder{
+	
+	position: absolute;
+	height: 100%;
+	width: 1px ;
+	background: #c4a92b;
+	left: -18px;
+	top: 0px;
+	
+}
+
+/*
+ * Side navigation
+ *
+ * Scrollspy and affixed enhanced navigation to highlight sections and secondary
+ * sections of docs content.
+ */
+
+/* By default it's not affixed in mobile views, so undo that */
+.bs-sidebar.affix {
+  position: static;
+}
+
+/* First level of nav */
+.bs-sidenav {
+  margin-top: 30px;
+  margin-bottom: 30px;
+  padding-top:    10px;
+  padding-bottom: 10px;
+  background-color: #eee;
+  border: 1px solid #e5e5e5;
+  border-radius: 5px;
+}
+
+/* All levels of nav */
+.bs-sidebar .nav > li > a {
+  display: block;
+  color: #444;
+  padding: 8px 16px;
+}
+.bs-sidebar .nav > li > a:hover,
+.bs-sidebar .nav > li > a:focus {
+  text-decoration: none;
+  background-color: #FFF;
+  border-right: 2px solid #222;
+}
+.bs-sidebar .nav > .active > a,
+.bs-sidebar .nav > .active:hover > a,
+.bs-sidebar .nav > .active:focus > a {
+  font-weight: bold;
+  color: #444;
+  background-color: #fff;
+  border-right: 2px solid #222;
+}
+
+/* Nav: second level (shown on .active) */
+.bs-sidebar .nav .nav {
+  display: none; /* Hide by default, but at >768px, show it */
+  margin-bottom: 8px;
+}
+.bs-sidebar .nav .nav > li > a {
+  padding-top:    3px;
+  padding-bottom: 3px;
+  padding-left: 30px;
+  font-size: 90%;
+}
+
+/* Show and affix the side nav when space allows it */
+@media screen and (min-width: 992px) {
+  .bs-sidebar .nav > .active > ul {
+    display: block;
+  }
+  /* Widen the fixed sidebar */
+  .bs-sidebar.affix,
+  .bs-sidebar.affix-bottom {
+    width: 213px;
+  }
+  .bs-sidebar.affix {
+    position: fixed; /* Undo the static from mobile first approach */
+    top: 80px;
+  }
+  .bs-sidebar.affix-bottom {
+    position: absolute; /* Undo the static from mobile first approach */
+  }
+  .bs-sidebar.affix-bottom .bs-sidenav,
+  .bs-sidebar.affix .bs-sidenav {
+    margin-top: 0;
+    margin-bottom: 0;
+  }
+}
+@media screen and (min-width: 1200px) {
+  /* Widen the fixed sidebar again */
+  .bs-sidebar.affix-bottom,
+  .bs-sidebar.affix {
+    width: 263px;
+  }
+}
+
+
+
+.details{
+	
+	padding: 28px 0;
+
+}
+
+.prettyprint{color:#fff;}
+
+.classtag{
+	border: 1px solid #ccc;
+	padding: 3px;
+	background:#eee;
+	margin: 0 3px;
+	-webkit-border-radius: 3px;
+	-webkit-border-radius: 3px;
+}
+
+.spacetop{
+	
+	margin-top: 24px;
+	margin-bottom: 18px;
+}
+
+#console{
+	background:#eee;
+	border:1px solid #999;
+	-webkit-border-radius:6px;
+	border-radius:6px;
+	min-height:200px;
+	max-height:300px;
+	overflow:auto;
+	
+}
+#console .console-item{
+	padding: 7px;
+	border-bottom: 1px solid #fff;
+}
+.console-item span{
+	background: #13adfd;
+	color: #fff;
+	padding: 4px;
+}
+
+#effects h2{
+	margin: 10px 0;
+}
+#effects .col-xs-4 span{
+	display: block;
+	text-align: center;
+	background: #272822;
+	color: #fff;
+	padding-top: 8px;
+	padding-bottom: 7px;
+	margin-bottom: 5px;
+	cursor: pointer;	
+}
+
+
+#topic_backlight li{
+	
+	line-height: 2.2em;
+	
+}
+
+.faq ol{
+	
+	margin-top: 12px;
+	margin-bottom: 24px;
+
+}
+
+.top{
+	
+	position: fixed;
+	display: block;
+	width: 64px;
+	height: 64px;
+	bottom: 15px;
+	right: 15px;
+	z-index: 9999;
+
+}
+
+
+
+	
+.nch-nv-enable .nch-navgroup ul.nav{
+	
+	padding: 0;
+	margin: 0;
+	-webkit-border-radius: 0;
+	border-radius: 0;
+	
+	border-width: 0 1px;
+	
+}
+
+body.nch-nv-enable .nch-navgroup-first > ul.nav{
+
+	border-top-width: 1px;
+	padding-top: 5px;
+	
+	-webkit-border-top-left-radius: 3px;
+	border-top-left-radius: 3px;
+	-webkit-border-top-right-radius: 3px;
+	border-top-right-radius: 3px;
+	
+	margin-top: 25px;
+
+}
+
+
+body.nch-nv-enable .nch-navgroup-last > ul.nav{
+
+	border-bottom-width: 1px;
+	padding-bottom: 5px;
+	
+	-webkit-border-bottom-left-radius: 3px;
+	border-bottom-left-radius: 3px;
+	-webkit-border-bottom-right-radius: 3px;
+	border-bottom-right-radius: 3px;
+	
+	margin-bottom: 25px;
+
+}
+
+
+.nch-navgroup-hold{
+	
+	position: fixed;
+	top:0;
+	left:0;
+	width:232px;
+	height:1px;
+	
+	overflow:visible;
+	
+}
+
+.nch-navgroup-hold.nch-navgroup-disabled{
+	
+	position: static;
+	height: auto;
+
+}
+
+
+body .nch-navgroup-disabled .nav .nav{
+	
+	display: block;
+
+}
+
+
+
+.nch-navgroup-replace{
+	
+	height: 1px;
+	display: block;
+	
+}

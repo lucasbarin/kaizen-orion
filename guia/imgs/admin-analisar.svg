@@ -1,0 +1,20 @@
+﻿<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 700">
+  <defs><linearGradient id="g" x1="0%" y1="0%" x2="100%" y2="0%"><stop offset="0%" style="stop-color:#009ee3"/><stop offset="100%" style="stop-color:#0088c7"/></linearGradient></defs>
+  <rect fill="#f4f6f9" width="1200" height="700"/>
+  <rect fill="#2c3e50" width="260" height="700"/>
+  <text fill="white" x="20" y="35" font-family="Inter,sans-serif" font-size="18" font-weight="700">ORION KAIZEN</text>
+  <rect fill="url(#g)" x="260" width="940" height="60"/>
+  <text fill="white" x="290" y="38" font-family="Inter,sans-serif" font-size="16" font-weight="600">Analisar Kaizen #248</text>
+  <rect fill="white" x="290" y="90" width="900" height="580" rx="8" filter="drop-shadow(0 2px 8px rgba(0,0,0,0.08))"/>
+  <rect fill="url(#g)" x="290" y="90" width="900" height="50" rx="8 8 0 0"/>
+  <text fill="white" x="310" y="120" font-family="Inter,sans-serif" font-size="15" font-weight="600">Detalhes do Kaizen</text>
+  <text fill="#2c3e50" x="310" y="175" font-family="Inter,sans-serif" font-size="13" font-weight="600">Título:</text>
+  <text fill="#7f8c8d" x="450" y="175" font-family="Inter,sans-serif" font-size="13">Otimização processo de montagem</text>
+  <text fill="#2c3e50" x="310" y="280" font-family="Inter,sans-serif" font-size="13" font-weight="600">Valor:</text>
+  <rect fill="#009ee3" x="450" y="265" width="120" height="28" rx="14"/>
+  <text fill="white" x="475" y="283" font-family="Inter,sans-serif" font-size="14" font-weight="600">R$ 2.500</text>
+  <rect fill="#00812e" x="310" y="550" width="200" height="45" rx="6" filter="drop-shadow(0 2px 8px rgba(0,0,0,0.08))"/>
+  <text fill="white" x="370" y="577" font-family="Inter,sans-serif" font-size="14" font-weight="600">Aprovar</text>
+  <rect fill="#dc3545" x="530" y="550" width="200" height="45" rx="6" filter="drop-shadow(0 2px 8px rgba(0,0,0,0.08))"/>
+  <text fill="white" x="590" y="577" font-family="Inter,sans-serif" font-size="14" font-weight="600">Rejeitar</text>
+</svg>
