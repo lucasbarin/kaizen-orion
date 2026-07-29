@@ -18,6 +18,7 @@ vendor/
 
 # Project-local backups and dumps
 backups/
+\!ARQUIVOS/
 *.zip
 *.rar
 *.bak
