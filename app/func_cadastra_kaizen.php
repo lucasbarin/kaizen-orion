@@ -9,6 +9,13 @@ if ( $_POST ) {
 	foreach ( $_POST as $k => $v ) {
 		$$k = trata( $v );
 	}
+
+	// Garantir variáveis opcionais para evitar inconsistências no INSERT
+	$colaborador1 = isset($colaborador1) ? intval($colaborador1) : 0;
+	$colaborador2 = isset($colaborador2) ? intval($colaborador2) : 0;
+	$outrosdep_kaizen = isset($outrosdep_kaizen) ? intval($outrosdep_kaizen) : 0;
+	$qual_kaizen = isset($qual_kaizen) ? $qual_kaizen : '';
+	$tipo = isset($tipo) ? intval($tipo) : 0;
 	
 	// Buscar dados do usuário
 	$sql_usu = sql ("SELECT * FROM colaborador WHERE id_colaborador = ".trata($_SESSION['usu'])." LIMIT 1", $con);
@@ -16,6 +23,19 @@ if ( $_POST ) {
 		$usuario = mysqli_fetch_array($sql_usu);
 	} else {
 		volta( "erro", "Seu usuário não foi encontrado!", "../novo-kaizen.php" );
+	}
+
+	// Validar cadastro básico do colaborador logado (causa comum de erro seletivo)
+	$setor_usuario = intval($usuario['setor_colaborador']);
+	$unidade_usuario = intval($usuario['unidade_colaborador']);
+	if ($setor_usuario <= 0 || $unidade_usuario <= 0) {
+		volta("erro", "Seu cadastro está incompleto (setor/unidade). Contate o administrador.", "../novo-kaizen.php");
+	}
+
+	$sql_setor = sql("SELECT id_setor FROM setor WHERE id_setor = ".$setor_usuario." LIMIT 1", $con);
+	$sql_unidade = sql("SELECT id_unidade FROM unidade WHERE id_unidade = ".$unidade_usuario." LIMIT 1", $con);
+	if (!mysqli_num_rows($sql_setor) || !mysqli_num_rows($sql_unidade)) {
+		volta("erro", "Seu cadastro está inconsistente (setor/unidade inválido). Contate o administrador.", "../novo-kaizen.php");
 	}
 	
 	// Textos completos
@@ -46,6 +66,9 @@ if ( $_POST ) {
 	
 	// Buscar dados do tipo para saber qual complemento usa
 	$sql_tipo = sql("SELECT * FROM tipo WHERE id_tipo = ".intval($tipo)." LIMIT 1", $con);
+	if (!mysqli_num_rows($sql_tipo)) {
+		volta("erro", "Tipo de benefício inválido. Recarregue a página e tente novamente.", "../novo-kaizen.php");
+	}
 	$tipo_data = mysqli_fetch_array($sql_tipo);
 	$tipo_complemento_id = $tipo_data['complemento_tipo']; // 0=nenhum, 1, 2 ou 3
 	
@@ -76,9 +99,20 @@ if ( $_POST ) {
 	if($tipo_complemento_id > 0 && $valor_complemento <= 0){
 		volta("erro", "Informe o valor/horas do benefício para esta categoria!", "../novo-kaizen.php");
 	}
+
+	// Escapar textos para query e normalizar tipos
+	$situacao_atual_sql = mysqli_real_escape_string($con, $situacao_atual);
+	$texto1_sql = mysqli_real_escape_string($con, $texto1);
+	$texto2_sql = mysqli_real_escape_string($con, $texto2);
+	$add_tipo_texto_sql = mysqli_real_escape_string($con, $add_tipo_texto);
+	$qual_kaizen_sql = mysqli_real_escape_string($con, $qual_kaizen);
+	$valor_original_kaizen = floatval($valor_original_kaizen);
+	$tipo_complemento_id = intval($tipo_complemento_id);
+	$complemento_kaizen = floatval($complemento_kaizen);
+	$colaborador = intval($colaborador);
 	
-	// Inserir kaizen no banco
-	$sql = sql(
+	// Inserir kaizen no banco sem die() para evitar tela branca e permitir retorno amigável
+	$query_insert =
 	"
 	INSERT INTO `kaizen` (
 	`id_kaizen`, 
@@ -118,22 +152,22 @@ if ( $_POST ) {
 	VALUES (
 	NULL, 
 	'".$tipo."',
-	'".$add_tipo_texto."',
+	'".$add_tipo_texto_sql."',
 	'".$complemento_kaizen."',
 	'".$valor_original_kaizen."',
 	'".$tipo_complemento_id."',
-	'".$situacao_atual."',
-	'".$texto1."', 
-	'".$texto2."', 
+	'".$situacao_atual_sql."',
+	'".$texto1_sql."', 
+	'".$texto2_sql."', 
 	'".$colaborador."', 
 	'".$colaborador1."', 
 	'".$colaborador2."', 
 	'".$data."', 
 	'1',
-	'".$usuario['unidade_colaborador']."', 
-	'".$usuario['setor_colaborador']."', 
+	'".$unidade_usuario."', 
+	'".$setor_usuario."', 
 	'".$outrosdep_kaizen."', 
-	'".$qual_kaizen."',
+	'".$qual_kaizen_sql."',
 	'0',
 	'0',
 	'0',
@@ -149,8 +183,13 @@ if ( $_POST ) {
 	'0000-00-00',
 	'0',
 	'');
-	", $con
-	);
+	";
+
+	$sql = mysqli_query($con, $query_insert);
+	if (!$sql) {
+		error_log("Erro cadastro Kaizen | usuario=".$colaborador." | tipo=".$tipo." | setor=".$setor_usuario." | unidade=".$unidade_usuario." | erro=".mysqli_error($con));
+		volta("erro", "Não foi possível concluir o cadastro agora. Contate o administrador com seu usuário para validação de cadastro.", "../novo-kaizen.php");
+	}
 	
 	$idkaizen = mysqli_insert_id($con);
 

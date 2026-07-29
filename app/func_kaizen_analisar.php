@@ -16,11 +16,11 @@ if ( $_GET['kaizen'] && $_GET['analise'] ) {
 	if (mysqli_num_rows($sql_usu)){
 		$usuario = mysqli_fetch_array($sql_usu);
 	} else {
-		volta( "erro", "Seu usuário não foi encontrado!", "../home.php" );
+		volta( "erro", "Seu usuï¿½rio nï¿½o foi encontrado!", "../home.php" );
 	}
 	
 	if ($usuario['lider_colaborador'] <> 1){
-		volta ("erro", "Área restrita para líderes Kaizen. Você não tem permissão para acessá-lo!", "home.php");	
+		volta ("erro", "ï¿½rea restrita para lï¿½deres Kaizen. Vocï¿½ nï¿½o tem permissï¿½o para acessï¿½-lo!", "home.php");	
 	}
 	
 	$id_kaizen = trata ($_GET['kaizen']);
@@ -38,19 +38,19 @@ if ( $_GET['kaizen'] && $_GET['analise'] ) {
 			$dados = mysqli_fetch_array($sql);
 
 		} else {
-			volta ("erro", "Registro não encontrado!", "sugestoes-analisar.php");
+			volta ("erro", "Registro nï¿½o encontrado!", "sugestoes-analisar.php");
 		} 
 	
 	} else {
-		volta ("erro", "Registro não encontrado!", "sugestoes-analisar.php");
+		volta ("erro", "Registro nï¿½o encontrado!", "sugestoes-analisar.php");
 	}
 	
 	if ($dados['status_kaizen'] <> 1){
-		volta ("erro", "Este kaizen já foi analizado!", "sugestoes-analisar.php");
+		volta ("erro", "Este kaizen jï¿½ foi analizado!", "sugestoes-analisar.php");
 	}
 
 	if ($analise <> 2 && $analise <> 3 && $analise <> 4){
-		volta ("erro", "Clique nos botões Aprovar, Reprovar ou Devolver!", "kaizen-editar.php");
+		volta ("erro", "Clique nos botï¿½es Aprovar, Reprovar ou Devolver!", "kaizen-editar.php");
 		// 1 aberto , 2 aprovado , 3 reprovado
         if ($analise == 2){
             $s = 'Aprovado';
@@ -107,7 +107,7 @@ if ( $_GET['kaizen'] && $_GET['analise'] ) {
 	}
     
     
-    // processo a devolução
+    // processo a devoluï¿½ï¿½o
     
     if ($analise == 4){
             
@@ -117,14 +117,14 @@ if ( $_GET['kaizen'] && $_GET['analise'] ) {
         if ($sql){
             volta ("ok", "Kaizen devolvido ao colaborador!", "../sugestoes-analisar.php");
         } else {
-            volta ("erro", "Erro enviar sua solicitação! Tente novamente mais tarde!", "../analisar-kaizen.php");
+            volta ("erro", "Erro enviar sua solicitaï¿½ï¿½o! Tente novamente mais tarde!", "../analisar-kaizen.php");
         }
         
     }
     
     
     
-	/*// vejamos quantos pontos serão conferidos	
+	/*// vejamos quantos pontos serï¿½o conferidos	
 	if ($dados['tipo_kaizen'] == 1){
 		// custo
 		$sqltipo = sql("SELECT * FROM reducao 
@@ -153,7 +153,7 @@ if ( $_GET['kaizen'] && $_GET['analise'] ) {
     $pontosOld = $dados['ponto_colaborador'];
     
     $sqlPonto = sql("SELECT * FROM pg WHERE id_pg = 101", $con);
-    $ponto = mysqli_fetch_array($sql);
+	$ponto = mysqli_fetch_array($sqlPonto);
     
     if (is_numeric($ponto['nome1_pg']) && $ponto['nome1_pg'] > 0){
         $pontoCriador = $ponto['nome1_pg'];
@@ -218,7 +218,7 @@ if ($sql){
 		
 		
 	} else {
-		volta ("erro", "Erro enviar sua solicitação! Tente novamente mais tarde!", "../analisar-kaizen.php");
+		volta ("erro", "Erro enviar sua solicitaï¿½ï¿½o! Tente novamente mais tarde!", "../analisar-kaizen.php");
 	}
 } else {
 	volta ("erro", "Preencha todos os campos!", "../analisar-kaizen.php");

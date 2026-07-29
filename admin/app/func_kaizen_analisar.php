@@ -19,7 +19,7 @@ if ( $_GET['kaizen'] && $_GET['analise'] ) {
 	if (mysqli_num_rows($sql_usu)){
 		$usuario = mysqli_fetch_array($sql_usu);
 	} else {
-		volta( "erro", "Seu usuário não foi encontrado!", "../kaizen-admin.php" );
+		volta( "erro", "Seu usuï¿½rio nï¿½o foi encontrado!", "../kaizen-admin.php" );
 	}
 	
 
@@ -38,15 +38,15 @@ if ( $_GET['kaizen'] && $_GET['analise'] ) {
 		$dados = mysqli_fetch_array($sql);
 
 	} else {
-		volta ("erro", "Registro não encontrado!", "kaizen-admin.php");
+		volta ("erro", "Registro nï¿½o encontrado!", "kaizen-admin.php");
 	} 
 	
 	} else {
-		volta ("erro", "Registro não encontrado!", "kaizen-admin.php");
+		volta ("erro", "Registro nï¿½o encontrado!", "kaizen-admin.php");
 	}
 
 	if ($analise <> 2 && $analise <> 3){
-		volta ("erro", "Clique nos botões Aprovar ou Reprovar!", "kaizen-editar.php");
+		volta ("erro", "Clique nos botï¿½es Aprovar ou Reprovar!", "kaizen-editar.php");
 		// 1 aberto , 2 aprovado , 3 reprovado
 
         
@@ -91,7 +91,7 @@ if ( $_GET['kaizen'] && $_GET['analise'] ) {
 	$pontosOld = $dados['ponto_colaborador'];
 	$statusOld = $dados['status_kaizen'];
 	
-	// vejamos quantos pontos serão conferidos
+	// vejamos quantos pontos serï¿½o conferidos
     /*
 	if ($dados['tipo_kaizen'] == 1){
 		// custo
@@ -129,7 +129,7 @@ if ( $_GET['kaizen'] && $_GET['analise'] ) {
 	
     
     $sqlPonto = sql("SELECT * FROM pg WHERE id_pg = 101", $con);
-    $ponto = mysqli_fetch_array($sql);
+	$ponto = mysqli_fetch_array($sqlPonto);
     
     if (is_numeric($ponto['nome1_pg']) && $ponto['nome1_pg'] > 0){
         $pontoCriador = $ponto['nome1_pg'];
@@ -267,7 +267,7 @@ if ($sql){
 		
 		
 	} else {
-		volta ("erro", "Erro enviar sua solicitação! Tente novamente mais tarde!", "../kaizen-editar.php");
+		volta ("erro", "Erro enviar sua solicitaï¿½ï¿½o! Tente novamente mais tarde!", "../kaizen-editar.php");
 	}
 } else {
 	volta ("erro", "Preencha todos os campos!", "../kaizen-editar.php");
