@@ -425,7 +425,7 @@ $cambio_dolar = floatval($alert['nome6_pg'] ?? 0);       // Câmbio do dólar
 					<div class="step-dot" data-step="3"></div>
 				</div>
 
-				<form action="app/func_cadastra_kaizen.php" method="post" enctype="multipart/form-data" id="formKaizen">
+				<form action="app/func_cadastra_kaizen.php" method="post" enctype="multipart/form-data" id="formKaizen" novalidate>
 
 					<!-- Etapa 1: Tipo de Benefício -->
 					<div class="form-step active" id="step1">
@@ -780,7 +780,22 @@ $cambio_dolar = floatval($alert['nome6_pg'] ?? 0);       // Câmbio do dólar
 				$('html, body').animate({ scrollTop: 0 }, 300);
 			}
 
+			function validateStep(step) {
+				const fields = document.querySelectorAll('#step' + step + ' input, #step' + step + ' select, #step' + step + ' textarea');
+				for (const field of fields) {
+					if (!field.checkValidity()) {
+						field.reportValidity();
+						return false;
+					}
+				}
+				return true;
+			}
+
 			$('#btnNext1').on('click', function () {
+				if (!validateStep(1)) {
+					return;
+				}
+
 				let tipo = $('#tipo').val();
 				if (tipo == '') {
 					alert('Por favor, selecione o tipo de benefício!');
@@ -810,6 +825,10 @@ $cambio_dolar = floatval($alert['nome6_pg'] ?? 0);       // Câmbio do dólar
 			});
 
 			$('#btnNext2').on('click', function () {
+				if (!validateStep(2)) {
+					return;
+				}
+
 				if ($('#situacao_atual').val() == '') {
 					alert('Por favor, descreva a situação atual!');
 					return;
@@ -933,6 +952,11 @@ $cambio_dolar = floatval($alert['nome6_pg'] ?? 0);       // Câmbio do dólar
 				$('#anexos').trigger('change');
 			});	    // Validação do formulário
 			$('form#formKaizen').on('submit', function (e) {
+				if (!validateStep(3)) {
+					e.preventDefault();
+					return false;
+				}
+
 				let col1 = $('#colaborador1').val();
 				let col2 = $('#colaborador2').val();
 
@@ -948,6 +972,12 @@ $cambio_dolar = floatval($alert['nome6_pg'] ?? 0);       // Câmbio do dólar
 					e.preventDefault();
 					alert('Por favor, anexe pelo menos 1 arquivo (foto, documento, etc)!');
 					return false;
+				}
+
+				const submitButton = this.querySelector('button[type="submit"]');
+				if (submitButton) {
+					submitButton.disabled = true;
+					submitButton.innerHTML = '<i class="fas fa-spinner fa-spin me-2"></i> Enviando...';
 				}
 			});
 
