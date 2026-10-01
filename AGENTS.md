@@ -373,6 +373,7 @@ Tabelas de `colaborador`, `kaizen`, `log`, `logtroca`, `produto` foram migradas 
 5. Localmente o `.htaccess` redireciona para produção (seção 2) e os e-mails de análise não são incluídos (seção 9).
 6. `getRoot()` aponta para `/rastreabilidade/` (herança de outro projeto) — não use.
 7. Exportação Excel (`admin/kaizen-exportar.php`) envia `charset=Windows-1252`.
+8. **Wizard Novo Kaizen (`novo-kaizen.php`).** O input de anexos é `d-none`. `checkValidity()` / `reportValidity()` nele (ou em qualquer campo escondido) bloqueia o Enviar **sem mensagem**. Validar só campos visíveis; anexos por JS (quantidade, extensão, 10 MB) com alerta na etapa 3 (`#form-step3-alert`). Não desabilitar o `type="submit"` no mesmo tick do evento `submit` (Chrome/Safari podem abortar o POST) — usar `setTimeout(..., 0)` e flag `submitting`. O formulário tem `novalidate`.
 
 ## 14. Segurança — dívida técnica conhecida
 
@@ -409,6 +410,8 @@ sem alinhamento.
 
 ## Histórico
 
+- **2026-10-01** — Hotfix no Enviar Kaizen (etapa 3): validação não usa mais `reportValidity()` no input de anexo
+  escondido (bloqueava o envio sem aviso). Alerta visível, checagem de extensão/tamanho e spinner sem cancelar o POST.
 - **2026-09-29** — Documentação unificada neste arquivo; removidos `.md` antigos, scripts `.ps1` pontuais, scripts de
   migração (PHP 5→8 e V1→V2), e-mails `_OLD`/PHPMailer 5.1, módulos admin de CMS sem tabela (album, banner, noticia,
   foto, curso, teste) e arquivos de teste (`info.php`, `teste.html`, `admin/ver.html`).

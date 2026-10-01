@@ -644,6 +644,8 @@ $cambio_dolar = floatval($alert['nome6_pg'] ?? 0);       // Câmbio do dólar
 						<div class="row justify-content-center">
 							<div class="col-lg-10">
 
+								<div id="form-step3-alert" class="alert alert-danger d-none" role="alert"></div>
+
 								<div class="mb-4">
 									<label for="anexos" class="form-label fw-bold">Anexos - Base de cálculo, Fotos antes
 										e depois *</label>
@@ -713,7 +715,7 @@ $cambio_dolar = floatval($alert['nome6_pg'] ?? 0);       // Câmbio do dólar
 										id="btnPrev3">
 										<i class="fas fa-arrow-left me-2"></i> Voltar
 									</button>
-									<button type="submit" class="btn btn-success btn-lg btn-nav-wizard">
+									<button type="submit" class="btn btn-success btn-lg btn-nav-wizard" id="btnEnviarKaizen">
 										<i class="fas fa-paper-plane me-2"></i> Enviar Kaizen
 									</button>
 								</div>
@@ -767,6 +769,9 @@ $cambio_dolar = floatval($alert['nome6_pg'] ?? 0);       // Câmbio do dólar
 
 			// Navegação entre etapas
 			let currentStep = 1;
+			let submitting = false;
+			const anexosPermitidos = ['jpg', 'jpeg', 'png', 'gif', 'pdf', 'doc', 'docx', 'xls', 'xlsx', 'zip', 'rar'];
+			const anexoMaxBytes = 10 * 1024 * 1024;
 
 			function showStep(step) {
 				$('.form-step').removeClass('active');
@@ -780,15 +785,80 @@ $cambio_dolar = floatval($alert['nome6_pg'] ?? 0);       // Câmbio do dólar
 				$('html, body').animate({ scrollTop: 0 }, 300);
 			}
 
+			function campoVisivel(field) {
+				if (!field || field.disabled) {
+					return false;
+				}
+				if (field.type === 'hidden' || field.type === 'file') {
+					return false;
+				}
+				if (field.classList.contains('d-none')) {
+					return false;
+				}
+				const style = window.getComputedStyle(field);
+				if (style.display === 'none' || style.visibility === 'hidden') {
+					return false;
+				}
+				return field.offsetParent !== null;
+			}
+
+			function mostrarErroEtapa(step, mensagem) {
+				if (step === 3) {
+					const alerta = $('#form-step3-alert');
+					alerta.removeClass('d-none').text(mensagem);
+					$('html, body').animate({ scrollTop: alerta.offset().top - 120 }, 200);
+				} else {
+					alert(mensagem);
+				}
+			}
+
+			function limparErroEtapa3() {
+				$('#form-step3-alert').addClass('d-none').text('');
+			}
+
 			function validateStep(step) {
 				const fields = document.querySelectorAll('#step' + step + ' input, #step' + step + ' select, #step' + step + ' textarea');
 				for (const field of fields) {
+					if (!campoVisivel(field)) {
+						continue;
+					}
 					if (!field.checkValidity()) {
-						field.reportValidity();
+						if (field.offsetParent !== null && typeof field.reportValidity === 'function') {
+							field.reportValidity();
+						} else {
+							mostrarErroEtapa(step, field.validationMessage || 'Preencha os campos obrigatórios desta etapa.');
+						}
 						return false;
 					}
 				}
 				return true;
+			}
+
+			function validarAnexos() {
+				const arquivos = document.getElementById('anexos').files;
+				if (!arquivos || arquivos.length === 0) {
+					return 'Por favor, anexe pelo menos 1 arquivo (foto, documento, etc)!';
+				}
+				for (let i = 0; i < arquivos.length; i++) {
+					const arquivo = arquivos[i];
+					const nome = arquivo.name || '';
+					const ext = nome.split('.').pop().toLowerCase();
+					if (!ext || anexosPermitidos.indexOf(ext) === -1) {
+						return 'O arquivo "' + nome + '" não é permitido. Use JPG, PNG, PDF, Word, Excel ou ZIP.';
+					}
+					if (arquivo.size > anexoMaxBytes) {
+						return 'O arquivo "' + nome + '" ultrapassa 10 MB. Envie um arquivo menor.';
+					}
+				}
+				return '';
+			}
+
+			function atualizarQualKaizenObrigatorio() {
+				if ($('#outrosdep_kaizen').val() == '1') {
+					$('#qual_kaizen').prop('required', true);
+				} else {
+					$('#qual_kaizen').prop('required', false);
+				}
 			}
 
 			$('#btnNext1').on('click', function () {
@@ -856,6 +926,9 @@ $cambio_dolar = floatval($alert['nome6_pg'] ?? 0);       // Câmbio do dólar
 				showStep(2);
 			});
 
+			$('#outrosdep_kaizen').on('change', atualizarQualKaizenObrigatorio);
+			atualizarQualKaizenObrigatorio();
+
 			// Evento ao selecionar tipo
 			$('#tipo').on('change', function () {
 				let complemento_id = $(this).find(':selected').data('complemento');
@@ -907,9 +980,14 @@ $cambio_dolar = floatval($alert['nome6_pg'] ?? 0);       // Câmbio do dólar
 
 			// Contador de arquivos
 			$('#anexos').on('change', function () {
+				limparErroEtapa3();
 				let count = this.files.length;
 				if (count > 0) {
 					$('#file-count').html('<span class="badge bg-success">' + count + ' arquivo(s) selecionado(s)</span>');
+					const erroAnexo = validarAnexos();
+					if (erroAnexo) {
+						mostrarErroEtapa(3, erroAnexo);
+					}
 				} else {
 					$('#file-count').html('');
 				}
@@ -950,10 +1028,25 @@ $cambio_dolar = floatval($alert['nome6_pg'] ?? 0);       // Câmbio do dólar
 
 				// Disparar evento change para atualizar contador
 				$('#anexos').trigger('change');
-			});	    // Validação do formulário
+			});
+
 			$('form#formKaizen').on('submit', function (e) {
+				limparErroEtapa3();
+
+				if (submitting) {
+					e.preventDefault();
+					return false;
+				}
+
 				if (!validateStep(3)) {
 					e.preventDefault();
+					return false;
+				}
+
+				if ($('#outrosdep_kaizen').val() == '1' && $.trim($('#qual_kaizen').val()) == '') {
+					e.preventDefault();
+					mostrarErroEtapa(3, 'Informe em quais departamentos a ideia pode ser implementada.');
+					$('#qual_kaizen').focus();
 					return false;
 				}
 
@@ -962,23 +1055,25 @@ $cambio_dolar = floatval($alert['nome6_pg'] ?? 0);       // Câmbio do dólar
 
 				if (col1 != '' && col2 != '' && col1 == col2) {
 					e.preventDefault();
-					alert('Os colaboradores selecionados não podem ser iguais!');
+					mostrarErroEtapa(3, 'Os colaboradores selecionados não podem ser iguais!');
 					return false;
 				}
 
-				// Validar se pelo menos 1 anexo foi selecionado
-				let anexos = $('#anexos')[0].files.length;
-				if (anexos == 0) {
+				const erroAnexo = validarAnexos();
+				if (erroAnexo) {
 					e.preventDefault();
-					alert('Por favor, anexe pelo menos 1 arquivo (foto, documento, etc)!');
+					mostrarErroEtapa(3, erroAnexo);
 					return false;
 				}
 
-				const submitButton = this.querySelector('button[type="submit"]');
-				if (submitButton) {
-					submitButton.disabled = true;
-					submitButton.innerHTML = '<i class="fas fa-spinner fa-spin me-2"></i> Enviando...';
-				}
+				submitting = true;
+				const submitButton = document.getElementById('btnEnviarKaizen');
+				setTimeout(function () {
+					if (submitButton) {
+						submitButton.disabled = true;
+						submitButton.innerHTML = '<i class="fas fa-spinner fa-spin me-2"></i> Enviando...';
+					}
+				}, 0);
 			});
 
 		});
